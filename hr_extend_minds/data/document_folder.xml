@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate='1'>
+
+        <record id="documents_folder_1" model="documents.folder">
+            <field name="name">Committee</field>
+            <field name="description" type="html">
+                <center>
+                    <p>Commitee Attachments</p>
+                </center>
+            </field>
+            <field name="sequence">40</field>
+        </record>
+
+    </data>
+</odoo>
