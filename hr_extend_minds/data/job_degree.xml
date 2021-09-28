@@ -38,5 +38,13 @@
             <field name="name">مدير عام</field>
         </record>
 
+        <record id="job_gree_9" model="job_degree">
+            <field name="name">عقد مؤقت</field>
+        </record>
+
+        <record id="job_gree_9" model="job_degree">
+            <field name="name">أجر مقابل عمل</field>
+        </record>
+
     </data>
 </odoo>

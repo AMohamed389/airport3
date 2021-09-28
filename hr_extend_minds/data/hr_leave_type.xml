@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate='1'>
+    <data noupdate='0'>
 
         <record id="hr_leave_type_1" model="hr.leave.type">
             <field name="name">رصيد متجمد حتى 2009</field>
@@ -106,8 +106,8 @@
         </record>
 
         <record id="hr_leave_type_12" model="hr.leave.type">
-            <field name="name">مرضي لا ينطبق عليه القرار</field>
-            <field name="code">SNFPL01</field>
+            <field name="name">مرضي لا ينطبق عليه القرار أجر كامل - 90 يوم</field>
+            <field name="code">SNFPL9001</field>
             <field name="request_unit">day</field>
             <field name="allocation_type">no</field>
             <field name="color_name">ivory</field>
@@ -169,6 +169,33 @@
             <field name="request_unit">day</field>
             <field name="allocation_type">no</field>
             <field name="color_name">lightyellow</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_19" model="hr.leave.type">
+            <field name="name">مرضي لا ينطبق عليه القرار أجر 75% - 180 يوم</field>
+            <field name="code">SNFPL18002</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">ivory</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_20" model="hr.leave.type">
+            <field name="name">مرضي لا ينطبق عليه القرار أجر 50% - 180 يوم</field>
+            <field name="code">SNFPL18003</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">ivory</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_21" model="hr.leave.type">
+            <field name="name">مرضي لا ينطبق عليه القرار بدون أجر - 180 يوم</field>
+            <field name="code">SNFPL18004</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">ivory</field>
             <field name="leave_validation_type">hr</field>
         </record>
 

@@ -25,3 +25,5 @@ from . import hr_employee_public
 
 from . import sync_folder
 
+#from . import hr_leave_allocation
+from . import employee_leave_allocation

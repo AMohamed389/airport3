@@ -19,7 +19,7 @@ class job_degree(models.Model):
 
     name = fields.Selection([('الأولى','الأولى'),('الثانية','الثانية'),('الثالثة','الثالثة'),
     ('الرابعة','الرابعة'),('الخامسة','الخامسة'),('السادسة','السادسة'),
-    ('عالية','عالية'),('ممتازة','ممتازة'),('مدير عام','مدير عام')] 
+    ('عالية','عالية'),('ممتازة','ممتازة'),('مدير عام','مدير عام'),('عقد مؤقت','عقد مؤقت'),('أجر مقابل عمل','أجر مقابل عمل')] 
     ,string="Degree", index=True, required=True, tracking=True)
     x_qualitative_group_id = fields.Many2one('qualitative_group', string="Qualitative Group", index=True, tracking=True)
 
