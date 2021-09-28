@@ -164,13 +164,13 @@ class hrleaveextend(models.Model):
                     raise ValidationError(_("Year {0} consumed > 2 consecutive days for leave {1} !.".format(str(date.today().year), _leave_type_rec.name)))
             
             _day_before_cl = _request_date_from - timedelta(days=1)
-            _employee_leaves = self.get_total_leaves_days(_request_date_to = _day_before_cl, _leave_code=_current_annual_leave_code)
+            _employee_leaves = self.get_total_leaves_days_for_cl(_request_date_to = _day_before_cl, _leave_code=_current_annual_leave_code)
             _total_number_of_days = _employee_leaves['total_number_of_days']
             
             if _total_number_of_days > 0:
                 raise ValidationError(_("Year {0} cannot take casual leave after annual leave for leave {1} !.".format(str(date.today().year), _leave_type_rec.name)))
 
-            _employee_leaves = self.get_total_leaves_days(_request_date_to = _day_before_cl, _leave_code=_current_casual_leave_code)
+            _employee_leaves = self.get_total_leaves_days_for_cl(_request_date_to = _day_before_cl, _leave_code=_current_casual_leave_code)
             _total_number_of_days = _employee_leaves['total_number_of_days']
             
             if _total_number_of_days > 0:
@@ -595,6 +595,40 @@ class hrleaveextend(models.Model):
 
         return _dict
 
+    def get_total_leaves_days_for_cl(self, _current_year=date.today().year, _request_date_from=str(date.today().year) + "-01-01", _request_date_to=str(date.today().year) + "-12-31", _leave_code=False):
+        
+        if not _leave_code:
+            return _leave_code
+        
+        _leave_type_rec = self.env['hr.leave.type'].search([('code','=',_leave_code)],limit=1)
+        #_logger.info("hrleaveextend get_total_leaves_days _leave_type_rec : " + str(_leave_type_rec))
+
+        if not _leave_type_rec:
+            return _leave_type_rec
+
+        _dict = {}
+        _total_duration_days = 0
+        _leaves_recs = self.env['hr.leave'].search([('request_date_from','>=',_request_date_from),
+                        ('request_date_to','=',_request_date_to),('state','=','validate'),
+                        ('holiday_status_id','=',_leave_type_rec.id),
+                        ('employee_id','=',self.employee_id.id)])
+        
+        #_logger.info("hrleaveextend get_total_leaves_days _leaves_recs : " + str(_leaves_recs))
+
+        for _rec in _leaves_recs:
+            _dict[_rec.holiday_status_id.code] = {
+                'request_date_from':_rec.request_date_from,
+                'request_date_to':_rec.request_date_to,
+                'number_of_days':_rec.number_of_days
+            }
+            _total_duration_days += _rec.number_of_days
+        
+        _dict['total_number_of_days'] = _total_duration_days
+        _dict['employee_id'] = self.employee_id.id
+
+        #_logger.info("hrleaveextend get_total_leaves_days _dict : " + str(_dict))
+
+        return _dict
 
     def diff_month(self, d1, d2):
         return (d1.year - d2.year) * 12 + d1.month - d2.month
