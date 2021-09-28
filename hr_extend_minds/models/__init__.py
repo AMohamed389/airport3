@@ -1,29 +1,18 @@
-from . import hr
-from . import employee_penalty
-from . import employee_training
-from . import training_catalogue
-from . import penalty_type
+# -*- coding: utf-8 -*-
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from . import qualitative_group
+from . import hr_employee_base 
+from . import hr_employee
+from . import hr_employee_category
+from . import hr_employee_public
 from . import hr_department
 from . import hr_job
-from . import hr_education_certificate
-
-from . import job_degree
-from . import job_history
-
-from . import hr_attachment
-from . import committee
-from . import committee_employee
-
-from . import myfn
-
-from . import hr_report
-#from . import ir_actions_report
-from . import hr_leave
-from . import hr_employee_public
-
-from . import sync_folder
-
-#from . import hr_leave_allocation
-from . import employee_leave_allocation
+from . import hr_plan
+from . import mail_alias
+from . import mail_channel
+from . import models
+from . import res_config_settings
+from . import res_partner
+from . import res_users
+from . import res_company
+from . import resource

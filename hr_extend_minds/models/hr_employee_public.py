@@ -1,87 +1,65 @@
 # -*- coding: utf-8 -*-
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models
-import logging
-
-_logger = logging.getLogger(__name__)
-
-class hr_employee_public(models.Model):
-    _inherit = 'hr.employee.public'
-
-    x_graduation_year = fields.Char(string='Year Of Graduation', readonly=True)
-
-    x_staff_id = fields.Char(string='Staff Id', readonly=True)
-
-    x_bank_account = fields.Char(string='Bank Account', readonly=True)
-
-    x_religion = fields.Selection([('Muslim', 'Muslim'), 
-                                   ('Christian', 'Christian'),
-                                   ('Muslima', 'Muslima'),
-                                   ('Christiana', 'Christiana')
-                                    ],string="Religion", readonly=True)
-
-    x_social_insurance_number = fields.Char(string='Social Insurance Number', readonly=True)
-
-    x_social_insurance_status = fields.Selection([('No', 'No'), ('New', 'New'), ('Pending', 'Pending'), ('Done', 'Done')], string="Social Insurance Status", readonly=True)
-
-    x_job_degree_id = fields.Many2one('job_degree', readonly=True)
-
-    x_job_degree_date = fields.Date(string='Degree Date', readonly=True)
-
-    x_pension_date = fields.Date(string='Pension Date', readonly=True)
-
-    x_receiving_work_date = fields.Date(string='Receiving Work Date', readonly=True)
-
-    x_hiring_date = fields.Date(string='Hiring Date', readonly=True)
-
-    x_end_of_service_date = fields.Date(string='End Of Service Date', readonly=True)
-
-    x_number_of_years = fields.Float(compute="get_number_of_years", readonly=True)
-
-    x_education_certificate_level = fields.Date(string='Education Certificate Date', readonly=True)
-
-    x_identity_issuer = fields.Char(string='Identity Issuer', readonly=True)
-
-    x_military_status = fields.Selection([('Postponed','Postponed'),('Completed','Completed'),('Exempted','Exempted')], readonly=True)
-
-    x_mother_name = fields.Char(string='Mother Name', readonly=True)
-
-    x_notes = fields.Text(string="Notes", readonly=True)
-
-    x_military_start_date = fields.Date(string='Military Start Date', readonly=True)
-
-    x_military_end_date = fields.Date(string='Military End Date', readonly=True)
-
-    x_has_disability_condition = fields.Boolean(string='Has Disability Condition', readonly=True)
-
-    x_is_delegated = fields.Boolean(string='Is Delegated', readonly=True)
-
-    x_delegated_from = fields.Char(string='Delegated From', readonly=True)
-
-    x_delegated_to = fields.Char(string='Delegated To', readonly=True)
-
-    x_is_loaned = fields.Boolean(string='Is Loaned', readonly=True)
-
-    x_loaned_from = fields.Char(string='Loaned From', readonly=True)
-
-    x_loaned_to = fields.Char(string='Loaned To', readonly=True)
-
-    x_qualitative_group_id = fields.Many2one('qualitative_group',string="Qualitative Group", readonly=True)
-
-    x_oldest_hiring_date = fields.Date(string='Oldest Hiring Date', readonly=True)
-
-    x_disability = fields.Char(string="Disability Id Number", readonly=True)
-
-    x_supervision_job = fields.Many2one('hr.job',string="Supervision Job", readonly=True)
-
-    x_seniority_number = fields.Integer(string="Seniority Number", readonly=True)
-
-    x_document_folder_id = fields.Many2one('documents.folder', string="Document Folder", readonly=True)
-
-    x_current_illegal_earning_date = fields.Char(string="Current Illegal Earning Date", readonly=True)
-    
-    x_next_illegal_earning_date = fields.Char(string="Next Illegal Earning Date", readonly=True)
-
-    job_id = fields.Many2one('hr.job', 'Job Position', readonly=True)
+from odoo import api, fields, models, tools
 
 
+class HrEmployeePublic(models.Model):
+    _name = "hr.employee.public"
+    _inherit = ["hr.employee.base"]
+    _description = 'Public Employee'
+    _order = 'name'
+    _auto = False
+    _log_access = True # Include magic fields
+
+    # Fields coming from hr.employee.base
+    create_date = fields.Datetime(readonly=True)
+    name = fields.Char(readonly=True)
+    active = fields.Boolean(readonly=True)
+    department_id = fields.Many2one(readonly=True)
+    job_id = fields.Many2one(readonly=True)
+    job_title = fields.Char(readonly=True)
+    company_id = fields.Many2one(readonly=True)
+    address_id = fields.Many2one(readonly=True)
+    mobile_phone = fields.Char(readonly=True)
+    work_phone = fields.Char(readonly=True)
+    work_email = fields.Char(readonly=True)
+    work_location = fields.Char(readonly=True)
+    user_id = fields.Many2one(readonly=True)
+    resource_id = fields.Many2one(readonly=True)
+    resource_calendar_id = fields.Many2one(readonly=True)
+    tz = fields.Selection(readonly=True)
+    color = fields.Integer(readonly=True)
+
+    # hr.employee.public specific fields
+    child_ids = fields.One2many('hr.employee.public', 'parent_id', string='Direct subordinates', readonly=True)
+    image_1920 = fields.Image("Original Image", compute='_compute_image', compute_sudo=True)
+    image_1024 = fields.Image("Image 1024", compute='_compute_image', compute_sudo=True)
+    image_512 = fields.Image("Image 512", compute='_compute_image', compute_sudo=True)
+    image_256 = fields.Image("Image 256", compute='_compute_image', compute_sudo=True)
+    image_128 = fields.Image("Image 128", compute='_compute_image', compute_sudo=True)
+    parent_id = fields.Many2one('hr.employee.public', 'Manager', readonly=True)
+    coach_id = fields.Many2one('hr.employee.public', 'Coach', readonly=True)
+    user_partner_id = fields.Many2one(related='user_id.partner_id', related_sudo=False, string="User's partner")
+
+    def _compute_image(self):
+        for employee in self:
+            # We have to be in sudo to have access to the images
+            employee_id = self.sudo().env['hr.employee'].browse(employee.id)
+            employee.image_1920 = employee_id.image_1920
+            employee.image_1024 = employee_id.image_1024
+            employee.image_512 = employee_id.image_512
+            employee.image_256 = employee_id.image_256
+            employee.image_128 = employee_id.image_128
+
+    @api.model
+    def _get_fields(self):
+        return ','.join('emp.%s' % name for name, field in self._fields.items() if field.store and field.type not in ['many2many', 'one2many'])
+
+    def init(self):
+        tools.drop_view_if_exists(self.env.cr, self._table)
+        self.env.cr.execute("""CREATE or REPLACE VIEW %s as (
+            SELECT
+                %s
+            FROM hr_employee emp
+        )""" % (self._table, self._get_fields()))
