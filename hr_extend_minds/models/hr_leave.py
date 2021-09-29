@@ -351,7 +351,7 @@ class hrleaveextend(models.Model):
             _sick_90_days_leaves = self.calc_90_sick_days_for_employee()
             _sick_90days_start_dt = _sick_90_days_leaves['_sick_90days_start_dt']
             _sick_90days_end_dt = _sick_90_days_leaves['_sick_90days_end_dt']
-
+            
             _employee_leaves = self.get_total_leaves_days(_request_date_from=_sick_90days_start_dt, _request_date_to=_sick_90days_end_dt, _leave_code=_leave_code)
             _total_number_of_days = _employee_leaves['total_number_of_days']
             
@@ -751,4 +751,3 @@ class hrleaveextend(models.Model):
             else:
                 holiday.number_of_days = 0
 
-    

@@ -27,8 +27,6 @@ class hr_leave_allocation(models.Model):
             
             self.allocate_AL(_emp_rec)
         
-
-    
     def allocate_AL(self, _emp=False):
         
         if _emp == False:
@@ -111,7 +109,6 @@ class hr_leave_allocation(models.Model):
         })
 
         _result.action_approve()
-
 
     def get_leave_type_id(self, _leave_type_code=False):
         

@@ -434,4 +434,4 @@ class employee_leave_allocation(models.Model):
 
 
 
-    _sql_constraints = [('constrain_name', 'UNIQUE (name)', 'The staff id is already exists')]
+    _sql_constraints = [('constrain_name', 'UNIQUE (name)', 'The name is already exists !.')]
