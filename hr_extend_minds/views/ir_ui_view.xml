@@ -69,7 +69,7 @@
                     <field name="x_leave_type_code"/>
                 </xpath>
                 <xpath expr="//field[@name='name']" position="before">
-                    <field name="x_half_shift_leave_flg" attrs="{'invisible':[('x_work_schedule_type','=','Morning')],'readonly':[('state','!=','draft')]}"/>
+                    <field name="x_half_shift_leave_flg" attrs="{'invisible':[('x_work_schedule_type','=','Morning')],'readonly':[('state','not in',('draft','confirm'))]}"/>
                     <field name="x_issuer"/>
                 </xpath>
                 <xpath expr="//field[@name='number_of_days']" position="after">
