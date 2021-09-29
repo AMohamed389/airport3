@@ -12,6 +12,7 @@ _logger = logging.getLogger(__name__)
 
 class myfn (models.AbstractModel):
     _name = 'myfn'
+    _description = 'myfn'
 
     
 

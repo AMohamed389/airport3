@@ -15,6 +15,7 @@ _logger = logging.getLogger(__name__)
 
 class trainingcatalogue(models.Model):
     _name = 'training.catalogue'
+    _description = 'Training Catalogue'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'x_name'
     _order = 'create_date DESC'

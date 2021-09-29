@@ -15,6 +15,7 @@ _logger = logging.getLogger(__name__)
 
 class penaltytype(models.Model):
     _name = 'penalty.type'
+    _description = 'Penalty Type'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'x_name'
     _order = 'create_date DESC'

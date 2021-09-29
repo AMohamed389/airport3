@@ -15,6 +15,7 @@ _logger = logging.getLogger(__name__)
 
 class employeetraining(models.Model):
     _name = 'employee.training'
+    _description = 'Employee Trainings'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'x_employee_id'
     _order = 'create_date DESC'

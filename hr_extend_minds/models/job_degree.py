@@ -15,6 +15,7 @@ _logger = logging.getLogger(__name__)
 
 class job_degree(models.Model):
     _name = 'job_degree'
+    _description = 'Job Degree'
     _order = 'create_date DESC'
 
     name = fields.Selection([('الأولى','الأولى'),('الثانية','الثانية'),('الثالثة','الثالثة'),

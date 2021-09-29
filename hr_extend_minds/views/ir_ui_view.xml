@@ -33,6 +33,9 @@
                     <field name="x_administration_name"/>
                     <field name="x_section_name"/>
                     <field name="x_issuer"/>
+                    <field name="x_work_schedule_type" optional="show"/>
+                    <field name="x_resource_calendar_name" optional="hide"/>
+                    <field name="x_leave_type_code" optional="show"/>
                 </xpath>
             </data>
         </field>
@@ -60,8 +63,17 @@
                     <field name="x_administration_name"/>
                     <field name="x_section_name"/>
                 </xpath>
+                <xpath expr="//field[@name='employee_id']" position="after">
+                    <field name="x_work_schedule_type"/>
+                    <field name="x_resource_calendar_name"/>
+                    <field name="x_leave_type_code"/>
+                </xpath>
                 <xpath expr="//field[@name='name']" position="before">
+                    <field name="x_half_shift_leave_flg" attrs="{'invisible':[('x_work_schedule_type','=','Morning')],'readonly':[('state','!=','draft')]}"/>
                     <field name="x_issuer"/>
+                </xpath>
+                <xpath expr="//field[@name='number_of_days']" position="after">
+                    
                 </xpath>
             </data>
         </field>
@@ -83,8 +95,6 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">hr_report</field>
         <field name="view_mode">tree,form</field>
-
-
     </record>
 
     <record id="view_hr_report_list" model="ir.ui.view">

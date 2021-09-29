@@ -15,6 +15,7 @@ _logger = logging.getLogger(__name__)
 
 class hr_education_cetificate(models.Model):
     _name = 'hr_education_certificate'
+    _description = 'HR Employees Education Certificates'
     _order = 'x_certificate_date DESC'
 
     name = fields.Char(string="Name", index=True, tracking=True)

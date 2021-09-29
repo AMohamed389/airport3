@@ -15,6 +15,7 @@ _logger = logging.getLogger(__name__)
 
 class qualitative_group(models.Model):
     _name = 'qualitative_group'
+    _description = 'Qualitative Group'
     _order = 'create_date DESC'
 
     name = fields.Char(string="Qualitative Group", index=True, required=True, tracking=True)

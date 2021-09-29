@@ -15,6 +15,7 @@ _logger = logging.getLogger(__name__)
 
 class job_history(models.Model):
     _name = 'job_history'
+    _description = 'Job History'
     _order = 'x_date_from DESC'
 
     name = fields.Char(string="Job", index=True, tracking=True)

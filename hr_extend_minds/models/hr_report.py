@@ -15,6 +15,7 @@ _logger = logging.getLogger(__name__)
 
 class hr_report(models.Model):
     _name = 'hr_report'
+    _description = 'HR Reports'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'create_date DESC'
 

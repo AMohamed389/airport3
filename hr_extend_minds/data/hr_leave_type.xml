@@ -199,5 +199,14 @@
             <field name="leave_validation_type">hr</field>
         </record>
 
+        <record id="hr_leave_type_22" model="hr.leave.type">
+            <field name="name">DMS - مرضي</field>
+            <field name="code">SDMSL01</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">lightblue</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
     </data>
 </odoo>

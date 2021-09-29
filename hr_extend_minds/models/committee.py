@@ -15,6 +15,7 @@ _logger = logging.getLogger(__name__)
 
 class committee(models.Model):
     _name = 'committee'
+    _description = 'Committeee'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'create_date DESC'
 

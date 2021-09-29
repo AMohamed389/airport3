@@ -15,6 +15,7 @@ _logger = logging.getLogger(__name__)
 
 class committee_employee(models.Model):
     _name = 'committee_employee'
+    _description = 'Committee Employees'
     _order = 'create_date DESC'
 
     #name = fields.Char(string="Decision Number", index=True, required=True, tracking=True)
