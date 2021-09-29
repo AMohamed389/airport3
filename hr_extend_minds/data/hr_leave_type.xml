@@ -208,5 +208,14 @@
             <field name="leave_validation_type">hr</field>
         </record>
 
+        <record id="hr_leave_type_23" model="hr.leave.type">
+            <field name="name">اعتيادي رصيد مرحل اعوام زوجية بعد 2009</field>
+            <field name="code">EBAL2009</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">blue</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
     </data>
 </odoo>
