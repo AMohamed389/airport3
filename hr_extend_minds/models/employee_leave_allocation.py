@@ -270,7 +270,10 @@ class employee_leave_allocation(models.Model):
 
         _al_id = self.get_leave_type_id(_al_code)
 
-        if not _emp_oldest_hiring_date or not _emp_birthday or not _emp_receiving_work_date:
+        if not _emp_oldest_hiring_date:
+            _emp_oldest_hiring_date = _emp_receiving_work_date
+
+        if not _emp_birthday or not _emp_receiving_work_date:
             # _logger.info("hr_leave_allocation _allocate_AL _emp.name : " + str(_emp.name))
             # _logger.info("hr_leave_allocation _allocate_AL _emp_oldest_hiring_date : " + str(_emp_oldest_hiring_date))
             # _logger.info("hr_leave_allocation _allocate_AL _emp_birthday : " + str(_emp_birthday))

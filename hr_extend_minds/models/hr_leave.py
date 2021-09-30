@@ -25,7 +25,9 @@ class hrleaveextend(models.Model):
     x_administration_name = fields.Char(related="employee_id.x_administration_name", index=True)
     x_section_name = fields.Char(related="employee_id.x_section_name", index=True)
     x_staff_id = fields.Char(related="employee_id.x_staff_id", index=True)
-    x_issuer = fields.Char(string="Source", index=True, tracking=True)
+    x_issuer = fields.Selection([('تأمين مصر للطيران','تأمين مصر للطيران'),
+                                ('تأمين صحي','تأمين صحي'),
+                                ('DMS تأمين','DMS تأمين')],string="Source", index=True, tracking=True)
     x_work_schedule_type = fields.Selection(related="employee_id.x_work_schedule_type", index=True)
     x_resource_calendar_name = fields.Char(string="Schedule Name", related="employee_id.resource_calendar_id.name", index=True)
     x_half_shift_leave_flg = fields.Boolean(string="Half Shift Leave", index=True, tracking=True)
@@ -351,7 +353,7 @@ class hrleaveextend(models.Model):
             _sick_90_days_leaves = self.calc_90_sick_days_for_employee()
             _sick_90days_start_dt = _sick_90_days_leaves['_sick_90days_start_dt']
             _sick_90days_end_dt = _sick_90_days_leaves['_sick_90days_end_dt']
-            
+
             _employee_leaves = self.get_total_leaves_days(_request_date_from=_sick_90days_start_dt, _request_date_to=_sick_90days_end_dt, _leave_code=_leave_code)
             _total_number_of_days = _employee_leaves['total_number_of_days']
             
