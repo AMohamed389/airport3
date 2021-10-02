@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from odoo import models, fields, api
 from odoo import exceptions
 from odoo.exceptions import ValidationError
@@ -25,7 +26,7 @@ class trainingcatalogue(models.Model):
 
     x_image = fields.Binary(string='Image', store=True)
 
-    x_name = fields.Char(string='Name', store=True, index=True, tracking=True)
+    x_name = fields.Char(string='Name', store=True, index=True, tracking=True ,required=True)
 
     x_training_type = fields.Selection(
         [('Technical', 'Technical'), ('Managerial', 'Managerial'), ('IT', 'IT'), ('Languages', 'Languages'),
@@ -36,7 +37,7 @@ class trainingcatalogue(models.Model):
     x_training_code = fields.Char(string='Training Code', store=True, index=True, tracking=True)
 
     x_training_level = fields.Selection(
-        [('Basic', 'Basic'), ('Advanced', 'Advanced'), ('Specialist', 'Specialist')],
+        [('Basic', 'Basic'), ('Advanced', 'Advanced'), ('Specialist', 'Specialist'),('None','None')],
         string="Training Level", store=True, 
         index=True, tracking=True)
 
@@ -45,7 +46,24 @@ class trainingcatalogue(models.Model):
     x_responsible_id = fields.Many2one('hr.employee', string="Responsible", store=True,
                                            tracking=True, index=True)
 
-    x_currency_id = fields.Many2one('res.currency', string="Currency", store=True,
-                                           tracking=True, index=True)
-
+    x_currency_id = fields.Many2one('res.currency', string="Currency", store=True, tracking=True, index=True, default=lambda self: self.env.user.company_id.currency_id.id)
     active = fields.Boolean(string='Active',index=True,default=True,tracking=True)
+    
+    x_description = fields.Text(string='Description')
+
+    trainee_ids = fields.One2many('employee.training', 'x_training', string='Trainees')
+
+    budget_actual = fields.Monetary(compute='_compute_budget_actual', string='Actual Used')
+    employee_count= fields.Integer(compute='_compute_budget_actual', string='Trainees Count')
+
+
+
+    
+    @api.depends('trainee_ids')
+    def _compute_budget_actual(self):
+        
+
+        recs = self.env['employee.training'].search([('x_training', "=", self.id),('state', "in", ['Scheduled','In Progress','Completed'])])
+        self.budget_actual = sum(recs.mapped("x_training_actual_cost"))
+        self.employee_count = len(recs.mapped("id"))
+        

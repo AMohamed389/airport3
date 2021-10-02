@@ -186,6 +186,7 @@ class hrextend(models.Model):
         ('married and dependent', 'Married And Dependent'),
         ('divorced and dependent', 'Divorced And Dependent')
     ], string='Marital Status', groups="hr.group_hr_user", tracking=True, index=True)
+    employee_training_ids = fields.One2many('employee.training', 'x_employee_id', string='Trainings')
     
 
     @api.depends('department_id')

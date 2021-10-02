@@ -29,3 +29,15 @@ from . import sync_folder
 from . import employee_leave_allocation
 
 from . import resource_calendar
+from . import training_budget
+from . import training_location
+from . import trainer
+from . import trainee
+from . import mission
+
+
+
+
+
+
+
