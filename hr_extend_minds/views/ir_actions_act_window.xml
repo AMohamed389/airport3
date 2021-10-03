@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <odoo>
 
-    
+
 
     <record id="employee_penalty_action_1" model="ir.actions.act_window">
         <field name="binding_model_id" eval="False"/>
@@ -14,7 +14,7 @@
         <field name="help"><![CDATA[<p class="o_view_nocontent_smiling_face">
                     Employee Penalties !.
                 </p>
-            ]]></field>
+            ]]>        </field>
         <field name="limit">80</field>
         <field name="name">Employee Penalty</field>
         <field name="res_model">employee.penalty</field>
@@ -45,16 +45,16 @@
                       top right corner (you can also customize this help message there).
                   </p>
               ]]></field>
-      <field name="limit">80</field>
-      <field name="name">Employee Penalty Tags</field>
-      <field name="res_model">x_employee_penalty_tag</field>
-      <field name="search_view_id" eval="False"/>
-      <field name="target">current</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="usage" eval="False"/>
-      <field name="view_id" eval="False"/>
-      <field name="view_mode">tree,form</field>
-    </record>-->
+<field name="limit">80</field>
+<field name="name">Employee Penalty Tags</field>
+<field name="res_model">x_employee_penalty_tag</field>
+<field name="search_view_id" eval="False"/>
+<field name="target">current</field>
+<field name="type">ir.actions.act_window</field>
+<field name="usage" eval="False"/>
+<field name="view_id" eval="False"/>
+<field name="view_mode">tree,form</field>
+</record>-->
 
     <record id="employee_training_action_1" model="ir.actions.act_window">
         <field name="binding_model_id" eval="False"/>
@@ -67,7 +67,7 @@
         <field name="help"><![CDATA[<p class="o_view_nocontent_smiling_face">
                     Employee training !.
                 </p>
-            ]]></field>
+            ]]>        </field>
         <field name="limit">80</field>
         <field name="name">Employee Training</field>
         <field name="res_model">employee.training</field>
@@ -98,16 +98,16 @@
                       top right corner (you can also customize this help message there).
                   </p>
               ]]></field>
-      <field name="limit">80</field>
-      <field name="name">Employee Training Tags</field>
-      <field name="res_model">x_employee_training_tag</field>
-      <field name="search_view_id" eval="False"/>
-      <field name="target">current</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="usage" eval="False"/>
-      <field name="view_id" eval="False"/>
-      <field name="view_mode">tree,form</field>
-    </record>-->
+<field name="limit">80</field>
+<field name="name">Employee Training Tags</field>
+<field name="res_model">x_employee_training_tag</field>
+<field name="search_view_id" eval="False"/>
+<field name="target">current</field>
+<field name="type">ir.actions.act_window</field>
+<field name="usage" eval="False"/>
+<field name="view_id" eval="False"/>
+<field name="view_mode">tree,form</field>
+</record>-->
 
     <!--<record id="studio_customization.employees_1060685c-5ee3-4f2d-923e-747330cf203a" model="ir.actions.act_window" context="{'studio': True}">
       <field name="binding_model_id" eval="False"/>
@@ -160,7 +160,7 @@
         <field name="help"><![CDATA[<p class="o_view_nocontent_smiling_face">
                     Penalty Types !.
                 </p>
-            ]]></field>
+            ]]>        </field>
         <field name="limit">80</field>
         <field name="name">Penalty Types</field>
         <field name="res_model">penalty.type</field>
@@ -191,16 +191,16 @@
                       top right corner (you can also customize this help message there).
                   </p>
               ]]></field>
-      <field name="limit">80</field>
-      <field name="name">Penalty Types Tags</field>
-      <field name="res_model">x_penalty_types_tag</field>
-      <field name="search_view_id" eval="False"/>
-      <field name="target">current</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="usage" eval="False"/>
-      <field name="view_id" eval="False"/>
-      <field name="view_mode">tree,form</field>
-    </record>-->
+<field name="limit">80</field>
+<field name="name">Penalty Types Tags</field>
+<field name="res_model">x_penalty_types_tag</field>
+<field name="search_view_id" eval="False"/>
+<field name="target">current</field>
+<field name="type">ir.actions.act_window</field>
+<field name="usage" eval="False"/>
+<field name="view_id" eval="False"/>
+<field name="view_mode">tree,form</field>
+</record>-->
 
     <record id="training_catalogue_action_1" model="ir.actions.act_window">
         <field name="binding_model_id" eval="False"/>
@@ -213,7 +213,7 @@
         <field name="help"><![CDATA[<p class="o_view_nocontent_smiling_face">
                     Training catalogue !.
                 </p>
-            ]]></field>
+            ]]>        </field>
         <field name="limit">80</field>
         <field name="name">Training Catalogue</field>
         <field name="res_model">training.catalogue</field>
@@ -244,15 +244,26 @@
                       top right corner (you can also customize this help message there).
                   </p>
               ]]></field>
-      <field name="limit">80</field>
-      <field name="name">Training Catalogue Tags</field>
-      <field name="res_model">x_training_catalogue_tag</field>
-      <field name="search_view_id" eval="False"/>
-      <field name="target">current</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="usage" eval="False"/>
-      <field name="view_id" eval="False"/>
-      <field name="view_mode">tree,form</field>
-    </record>-->
+<field name="limit">80</field>
+<field name="name">Training Catalogue Tags</field>
+<field name="res_model">x_training_catalogue_tag</field>
+<field name="search_view_id" eval="False"/>
+<field name="target">current</field>
+<field name="type">ir.actions.act_window</field>
+<field name="usage" eval="False"/>
+<field name="view_id" eval="False"/>
+<field name="view_mode">tree,form</field>
+</record>-->
 
+
+    <record id="act_training_submit_bulk" model="ir.actions.server">
+        <field name="name">Submit Training</field>
+        <field name="model_id" ref="model_employee_training"/>
+        <field name="binding_model_id" ref="model_employee_training"/>
+        <field name="state">code</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user'))]"/>
+        <field name="code">
+        action = model.submit_training()
+        </field>
+    </record>
 </odoo>

@@ -175,12 +175,17 @@ class employeetraining(models.Model):
             self.x_training_actual_cost=self.x_training.x_training_cost
     
     def submit_training(self):
-        recs = self.env['training_budget'].search([('start_date','<=',self.x_start_date),('end_date','>=',self.x_start_date)],limit=1)
-        if not recs:
-                raise ValidationError("No Budget Assigned ")
-        
-        self.training_budget_id=recs.id
-        self.state="Scheduled"
+
+        domain=[('id', 'in', self.env.context.get('active_ids', [])),('state','=','New')]
+        trainings=self.env['employee.training'].search(domain)
+        for r in trainings:
+
+            recs = self.env['training_budget'].search([('start_date','<=',r.x_start_date),('end_date','>=',r.x_start_date)],limit=1)
+            if not recs:
+                    raise ValidationError("No Budget Assigned ")
+            
+            r.training_budget_id=recs.id
+            r.state="Scheduled"
 
     def start_training(self):
         if self.state=="Scheduled":
