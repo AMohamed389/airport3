@@ -18,7 +18,7 @@ _logger = logging.getLogger(__name__)
 class employee_leave_allocation(models.Model):
     _name = 'employee_leave_allocation'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _order = 'create_date DESC'
+    _order = 'id DESC'
 
     name = fields.Char(string="Name", index=True, required=True, tracking=True)
     state = fields.Selection([

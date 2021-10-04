@@ -727,7 +727,8 @@ class hrleaveextend(models.Model):
         if _leave_code_res:
             if _leave_code_res == "AL" + str(_current_year) or _leave_code_res == "CL" + str(_current_year) \
             or _leave_code_res == "RRL01" or _leave_code_res == "ML01" or _leave_code_res == "OCCL01" \
-            or _leave_code_res == "OSL01" or _leave_code_res == "MSCL01" or _leave_code_res == "MEL01":
+            or _leave_code_res == "OSL01" or _leave_code_res == "MSCL01" or _leave_code_res == "MEL01" \
+            or _leave_code_res == "OVL01" :
                 raise ValidationError(_("Year {0} cannot take any not sick leave after sick leave {1} !.".format(str(date.today().year), _leave_type_rec.name)))
 
     @api.depends('date_from', 'date_to', 'employee_id', 'x_half_shift_leave_flg')

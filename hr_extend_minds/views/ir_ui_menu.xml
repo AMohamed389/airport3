@@ -189,8 +189,12 @@
 
   <menuitem name="Employees" id="employees_reporting_pivot_menu_1" parent="hr.hr_menu_hr_reports" action="action_employees_reporting" groups="hr.group_hr_manager,hr.group_hr_user" sequence="100"/>
 
-  <menuitem id="parent_menu_employee_leave_allocation" name="Batch Allocations" action="action_employee_leave_allocation" parent="hr_holidays.menu_hr_holidays_approvals" sequence="3000" />
+  
+  <menuitem id="parent_menu_bulk_actions"  name="Bulk Actions"  action=""  parent="hr_holidays.menu_hr_holidays_root" sequence="4" />
 
+  <menuitem id="parent_menu_employee_leave_allocation" name="Batch Allocations" action="action_employee_leave_allocation" parent="parent_menu_bulk_actions" sequence="3000" />
+  
+  <menuitem id="parent_menu_hr_holiday_bulk_update" name="Holidays Bulk Update" action="action_hr_holiday_bulk_update" parent="parent_menu_bulk_actions" sequence="3001" />
 
   <menuitem id="parent_menu_training_config" name="Training Configuration" parent="hr_extend_minds.training_app_1" sequence="3000" />
 

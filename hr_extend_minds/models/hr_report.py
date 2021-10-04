@@ -17,7 +17,7 @@ class hr_report(models.Model):
     _name = 'hr_report'
     _description = 'HR Reports'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _order = 'create_date DESC'
+    _order = 'id DESC'
 
     name = fields.Selection([('Statement Letter','Statement Letter'),('HR Letter','HR Letter')], string="Document", index=True, required=True, tracking=True)
     x_employee_id = fields.Many2one('hr.employee', string="Employee", store=True, required=True, tracking=True, index=True)

@@ -13,6 +13,7 @@ _logger = logging.getLogger(__name__)
 class sync_folder (models.Model):
     _name = 'sync_folder'
     _description = 'Sync Folders'
+    _order = "id DESC"
 
     state = fields.Selection([
         ('Draft', 'Draft'),('Completed', 'Completed')

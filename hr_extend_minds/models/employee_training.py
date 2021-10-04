@@ -17,7 +17,8 @@ class employeetraining(models.Model):
     _description = 'Employee Trainings'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'x_training'
-    _order = 'create_date DESC'
+    _order = 'id DESC'
+
     trainee_type = fields.Selection([ ('Employee', 'Employee'),('External','External') ], string='Trainee Type' ,required=True,index=True)
     x_assign_date = fields.Date(string='Assign Date', index=True, tracking=True)
 

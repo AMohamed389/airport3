@@ -35,7 +35,8 @@ from . import trainer
 from . import trainee
 from . import mission
 
-
+from . import hr_holiday_bulk_update
+from . import hr_holiday_bulk_update_employee
 
 
 

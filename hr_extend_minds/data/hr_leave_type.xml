@@ -56,7 +56,7 @@
             <field name="code">SCSL01</field>
             <field name="request_unit">day</field>
             <field name="allocation_type">no</field>
-            <field name="color_name">magenta</field>
+            <field name="color_name">wheat</field>
             <field name="leave_validation_type">hr</field>
         </record>
 
@@ -214,6 +214,15 @@
             <field name="request_unit">day</field>
             <field name="allocation_type">no</field>
             <field name="color_name">blue</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_24" model="hr.leave.type">
+            <field name="name">أجازات رسمية</field>
+            <field name="code">OVL01</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">magenta</field>
             <field name="leave_validation_type">hr</field>
         </record>
 

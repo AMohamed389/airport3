@@ -18,7 +18,7 @@ class penaltytype(models.Model):
     _description = 'Penalty Type'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'x_name'
-    _order = 'create_date DESC'
+    _order = 'id DESC'
 
     x_name = fields.Char(string='Name', store=True, index=True, tracking=True)
 

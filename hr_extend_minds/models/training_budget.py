@@ -39,4 +39,3 @@ class training_budget(models.Model):
             r.budget_actual = sum(recs.mapped("x_training_actual_cost"))
             r.employee_count = len(recs.mapped("id"))
             r.budget_diff = r.budget_planned - r.budget_actual
-    

@@ -66,4 +66,3 @@ class trainingcatalogue(models.Model):
             recs = self.env['employee.training'].search([('x_training', "=", r.id),('state', "in", ['Scheduled','In Progress','Completed'])])
             r.budget_actual = sum(recs.mapped("x_training_actual_cost"))
             r.employee_count = len(recs.mapped("id"))
-        

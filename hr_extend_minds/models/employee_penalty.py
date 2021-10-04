@@ -18,7 +18,7 @@ class employeepenalty(models.Model):
     _description = 'Employee Penalties'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'x_employee_id'
-    _order = 'create_date DESC'
+    _order = 'id DESC'
 
     x_employee_id = fields.Many2one('hr.employee', string="Employee", store=True,
                                      tracking=True, index=True)
