@@ -62,8 +62,8 @@ class trainingcatalogue(models.Model):
     @api.depends('trainee_ids')
     def _compute_budget_actual(self):
         
-
-        recs = self.env['employee.training'].search([('x_training', "=", self.id),('state', "in", ['Scheduled','In Progress','Completed'])])
-        self.budget_actual = sum(recs.mapped("x_training_actual_cost"))
-        self.employee_count = len(recs.mapped("id"))
+        for r in self:
+            recs = self.env['employee.training'].search([('x_training', "=", r.id),('state', "in", ['Scheduled','In Progress','Completed'])])
+            r.budget_actual = sum(recs.mapped("x_training_actual_cost"))
+            r.employee_count = len(recs.mapped("id"))
         

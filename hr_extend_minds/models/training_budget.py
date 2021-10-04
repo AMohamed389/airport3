@@ -33,9 +33,10 @@ class training_budget(models.Model):
     @api.depends('budget_planned')
     def _compute_budget_actual(self):
         
-
-        recs = self.env['employee.training'].search([('training_budget_id', "=", self.id),('state', "in", ['Scheduled','In Progress','Completed'])])
-        self.budget_actual = sum(recs.mapped("x_training_actual_cost"))
-        self.employee_count = len(recs.mapped("id"))
-        self.budget_diff = self.budget_planned - self.budget_actual
+        for r in self:
+            recs = self.env['employee.training'].search([('training_budget_id', "=", r.id),('state', "in", ['Scheduled','In Progress','Completed'])])
+        
+            r.budget_actual = sum(recs.mapped("x_training_actual_cost"))
+            r.employee_count = len(recs.mapped("id"))
+            r.budget_diff = r.budget_planned - r.budget_actual
     
