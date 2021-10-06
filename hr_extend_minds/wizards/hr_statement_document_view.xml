@@ -51,6 +51,7 @@
                 <field name="is_hiring_date"/>
                 <field name="is_receiving_Working_date"/>
                 <field name="is_education_certificate_level"/>
+                <field name="is_education_certificates_history"/>
                 <field name="is_email"/>
                 <field name="is_phone"/>
                 <field name="is_mobile_phone"/>

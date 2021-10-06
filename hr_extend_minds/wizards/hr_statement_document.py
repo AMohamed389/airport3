@@ -50,6 +50,7 @@ class hr_employee_report(models.TransientModel):
     is_mobile_phone = fields.Boolean(string="Mobile Phone")
     is_work_phone = fields.Boolean(string="Work Phone")
     is_all_selected = fields.Boolean(string="Select All")
+    is_education_certificates_history = fields.Boolean(string="Education Certificates History")
 
 
     def clean_flags(self):
@@ -92,6 +93,7 @@ class hr_employee_report(models.TransientModel):
             _rec.is_phone = False
             _rec.is_mobile_phone = False
             _rec.is_work_phone = False
+            _rec.is_education_certificates_history = False
 
     @api.onchange('is_all_selected')
     def _is_all_selected(self):
@@ -135,6 +137,7 @@ class hr_employee_report(models.TransientModel):
                 _rec.is_phone = True
                 _rec.is_mobile_phone = True
                 _rec.is_work_phone = True
+                _rec.is_education_certificates_history = True
                                 
 
     def print_hr_statement_document(self):

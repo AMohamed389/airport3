@@ -362,6 +362,16 @@ class hrextend(models.Model):
                 'parent_folder_id': int(_doc_folder_parent_create_rec)
             })
 
+            _doc_folder_penalty_create_rec = self.env['documents.folder'].create({
+                'name': 'جزاءات',
+                'parent_folder_id': int(_doc_folder_parent_create_rec)
+            })
+
+            _doc_folder_grievances_create_rec = self.env['documents.folder'].create({
+                'name': 'التظلمات',
+                'parent_folder_id': int(_doc_folder_parent_create_rec)
+            })
+
         return result
 
    

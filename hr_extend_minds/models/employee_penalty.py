@@ -35,4 +35,16 @@ class employeepenalty(models.Model):
 
     x_penalty_date = fields.Date(string='Penalty Date', index=True, tracking=True)
 
+    x_penalty_decision_date = fields.Date(string='Decision Date', index=True, tracking=True)
+
+    x_decision_number = fields.Integer(string='Decision Number', store=True, index=True, tracking=True)
+
+    x_penalty_effective_date = fields.Date(string='Effective Date', index=True, tracking=True)
+
+    x_investigation_date = fields.Date(string='Investigation Date', index=True, tracking=True)
+
+    x_investigation_number = fields.Integer(string='Investigation Number', store=True, index=True, tracking=True)
+
+    x_penalty_reason = fields.Text(string='Reason', tracking=True)
+
     active = fields.Boolean(string='Active',index=True,default=True,tracking=True)
