@@ -12,5 +12,15 @@
             <field name="sequence">40</field>
         </record>
 
+        <record id="documents_folder_2" model="documents.folder">
+            <field name="name">Committee</field>
+            <field name="description" type="html">
+                <center>
+                    <p>Job Structure</p>
+                </center>
+            </field>
+            <field name="sequence">41</field>
+        </record>
+
     </data>
 </odoo>
