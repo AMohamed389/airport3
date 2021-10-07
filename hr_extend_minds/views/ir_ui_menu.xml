@@ -216,4 +216,15 @@
 
   <menuitem id="parent_menu_trainee"  name="External Trainee"  action="action_trainee"  parent="hr_extend_minds.training_app_1" sequence="2999" />
   <menuitem id="parent_menu_mission"  name="Missions"  action="action_mission"  parent="hr_extend_minds.training_app_1" sequence="2900" />
+
+  <record id="parent_menu_hr_position" model="ir.ui.menu">
+    <field name="action" ref="hr.action_hr_job"/>
+    <field name="active" eval="True" />
+    <field name="groups_id" eval="[(6, 0, [])]" />
+    <field name="name">Job Position</field>
+    <field name="parent_id" eval="False" />
+    <field name="sequence">103</field>
+    <field name="web_icon">fa fa-suitcase,#FFFFFF,#123661</field>
+  </record>
+
 </odoo>
