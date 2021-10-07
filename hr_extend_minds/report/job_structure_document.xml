@@ -82,7 +82,7 @@
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">hr_extend_minds.report_job_structure_document</field>
         <field name="report_file">hr_extend_minds.report_job_structure_document</field>
-        <field name="print_report_name">'Job Structure Document - %s - %s' % (object.name, object.x_sector_id)</field>
+        <field name="print_report_name">'Job Structure Document - %s' % (object.name)</field>
         <field name="binding_model_id" ref="model_hr_job"/>
         <field name="binding_type">report</field>
     </record>
