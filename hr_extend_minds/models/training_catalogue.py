@@ -34,7 +34,7 @@ class trainingcatalogue(models.Model):
         string="Training Type", store=True, 
         index=True, tracking=True)
 
-    x_training_code = fields.Char(string='Training Code', store=True, index=True, tracking=True)
+    x_training_code = fields.Char(string='Training Code', store=True,required=True, index=True, tracking=True)
 
     x_training_level = fields.Selection(
         [('Basic', 'Basic'), ('Advanced', 'Advanced'), ('Specialist', 'Specialist'),('None','None')],
@@ -66,3 +66,5 @@ class trainingcatalogue(models.Model):
             recs = self.env['employee.training'].search([('x_training', "=", r.id),('state', "in", ['Scheduled','In Progress','Completed'])])
             r.budget_actual = sum(recs.mapped("x_training_actual_cost"))
             r.employee_count = len(recs.mapped("id"))
+
+    _sql_constraints = [('constrainname', 'UNIQUE (x_training_code)', 'Training Code already exists!.')]

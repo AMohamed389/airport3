@@ -1248,9 +1248,9 @@
                         <group name="employee_training_parent_group_left">
 
                             <field name="trainee_type" attrs="{'readonly':[('state', '!=', 'New')]}" options='{"no_open": True,"no_create": True}'/>
-                            <field name="trainee_id" attrs="{'invisible':[('trainee_type','!=','External')],'required':[('trainee_type','=','External')],'readonly':[('state', '!=', 'New')]}" options='{"no_open": True,"no_create": True}'/>
+                            <field name="trainee_id" attrs="{'invisible':[('trainee_type','!=','External')],'required':[('trainee_type','=','External')],'readonly':[('state', '!=', 'New')]}" options='{"no_create": True}'/>
                             <field name="trainee_type_rel" attrs="{'invisible':[('trainee_type','!=','External')]}" options='{"no_open": True,"no_create": True}'/>
-                            <field name="x_employee_id" attrs="{'invisible':[('trainee_type','!=','Employee')],'required':[('trainee_type','=','Employee')],'readonly':[('state', '!=', 'New')]}" options='{"no_open": True,"no_create": True}'/>
+                            <field name="x_employee_id" attrs="{'invisible':[('trainee_type','!=','Employee')],'required':[('trainee_type','=','Employee')],'readonly':[('state', '!=', 'New')]}" options='{"no_create": True}'/>
                             <field name="x_staff_id" attrs="{'invisible':[('trainee_type','!=','Employee')]}"/>
                             <field name="x_sector_name" attrs="{'invisible':[('trainee_type','!=','Employee')]}"/>
                             <field name="x_public_administration_name" attrs="{'invisible':[('trainee_type','!=','Employee')]}"/>
@@ -1279,7 +1279,7 @@
                             <field name="x_training_level"/>
                             <field name="x_training_cost"/>
                             <field name="training_budget_id" readonly="1" force_save="1" options='{"no_create": True}' />
-                            
+
 
                             <!--<field name="x_studio_tag_ids" widget="many2many_tags" options="{'color_field': 'x_color'}"/>-->
                         </group>
@@ -1291,7 +1291,7 @@
 
                         <group name="training_location_details" string="Training Location Details" attrs="{'invisible':[('trainee_type_rel','!=','Undergraduate')]}">
                             <field name="trainee_type_rel" invisible="1" />
-                            
+
                             <field name="x_section_name_train_loc" />
                             <field name="x_administration_name_train_loc" />
                             <field name="x_public_administration_name_train_loc" />
@@ -1679,7 +1679,7 @@
                 <filter string="Christian" name="christian" domain="['|',('x_religion', '=', 'Christiana'),('x_religion', '=', 'Christian')]"/>
                 <filter string="Muslim" name="Muslim" domain="['|',('x_religion','=','Muslima'),('x_religion', '=', 'Muslim')]"/>
                 <filter string="Age >= 60" name="Age" domain="[('x_age', '>=', 60)]"/>
-                
+
                 <filter name="religion_group_by" string="Religion" context="{'group_by': 'x_religion'}" domain="[]"/>
                 <filter name="age_group_by" string="Age" context="{'group_by': 'x_age'}" domain="[]"/>
                 <filter name="sector_group_by" string="Sector" context="{'group_by': 'x_sector_name'}" domain="[]"/>
@@ -2224,10 +2224,10 @@
                             <field name="trainer_type" optional="show"/>
 
                             <field name="employee_id" optional="show" attrs="{'invisible':[('trainer_type','!=','Employee')],'required':[('trainer_type','=','Employee')]}"/>
-                            <field name="name" optional="show"/>
-                            <field name="mobile_phone" optional="show"/>
-                            <field name="identification_id" optional="show"/>
-                            <field name="trainer_code" optional="show"/>
+                            <field name="name" attrs="{'readonly':[('trainer_type','=','Employee')]}" force_save="1"/>
+                            <field name="mobile_phone" attrs="{'readonly':[('trainer_type','=','Employee')]}" force_save="1"/>
+                            <field name="identification_id" attrs="{'readonly':[('trainer_type','=','Employee')]}" force_save="1"/>
+                            <field name="trainer_code" attrs="{'readonly':[('trainer_type','=','Employee')]}" force_save="1"/>
 
                         </group>
                         <group name="group_right">
@@ -2392,8 +2392,11 @@
                 <field name="type" optional="show"/>
                 <field name="start_date" optional="show"/>
                 <field name="end_date" optional="show"/>
+                <field name="destination_country" optional="show"/>
                 <field name="decision_number" optional="show"/>
                 <field name="state" optional="show"/>
+
+
 
 
             </tree>
@@ -2434,13 +2437,14 @@
                                 <span>to</span>
                                 <field name="end_date" widget="daterange" options="{&quot;related_start_date&quot;: &quot;start_date&quot;}"/>
                             </div>
-                            <field name="decision_number" optional="show"/>
+                            
                             <field name="attachment" />
 
 
                         </group>
                         <group name="group_right">
-
+                            <field name="destination_country" options='{"no_open": True,"no_create": True}' optional="show"/>
+                            <field name="decision_number" optional="show"/>
                         </group>
                     </group>
 
@@ -2494,16 +2498,16 @@
         <field name="name">view_hr_holiday_bulk_update_list</field>
         <field name="model">hr_holiday_bulk_update</field>
         <field name="arch" type="xml">
-        <tree>
-            <field name="name"/>
-            <field name="create_uid"/>
-            <field name="create_date"/>
-            <field name="start_date"/>
-            <field name="end_date"/>
-            <field name="is_deducted"/>
-            <field name="number_of_days"/>
+            <tree>
+                <field name="name"/>
+                <field name="create_uid"/>
+                <field name="create_date"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="is_deducted"/>
+                <field name="number_of_days"/>
 
-        </tree>
+            </tree>
         </field>
     </record>
 
@@ -2512,57 +2516,57 @@
         <field name="model">hr_holiday_bulk_update</field>
 
         <field name="arch" type="xml">
-        <form  >
-            <header>
-            <button name="submit_bulk" type="object" string="Submit" class="oe_highlight" states="New" attrs="{}"/>
-            <button name="run_bulk" type="object" string="Run" class="oe_highlight" states="Submit" attrs="{}" />
-            <button name="make_as_draft" type="object" string="Make As Draft" class="oe_highlight" states="Submit" attrs="{}" />
-                <field name="state" widget="statusbar" />
-            </header>
+            <form  >
+                <header>
+                    <button name="submit_bulk" type="object" string="Submit" class="oe_highlight" states="New" attrs="{}"/>
+                    <button name="run_bulk" type="object" string="Run" class="oe_highlight" states="Submit" attrs="{}" />
+                    <button name="make_as_draft" type="object" string="Make As Draft" class="oe_highlight" states="Submit" attrs="{}" />
+                    <field name="state" widget="statusbar" />
+                </header>
 
-            <sheet>
-            <widget name="web_ribbon" title="Success" bg_color="bg-success" attrs="{'invisible': [('state', 'not in', ('Completed'))]}"/>
-            <div name="button_box" class="oe_button_box">
-            </div>
-            <div class="oe_title">
-                <h1>
-                <field name="name" placeholder="Name" attrs="{'readonly':[('state', '!=', 'New')]}"/>
-                </h1>
-            </div>
-
-
-            <group name="main_group">
-                <group name="group_left">
-                <label string="From" for="start_date"/>
-                <div class="o_row">
-                    <field name="start_date" widget="daterange" options="{&quot;related_end_date&quot;: &quot;end_date&quot;}" attrs="{'readonly':[('state', '!=', 'New')]}"/>
-                    <span>to</span>
-                    <field name="end_date" widget="daterange" options="{&quot;related_start_date&quot;: &quot;start_date&quot;}" attrs="{'readonly':[('state', '!=', 'New')]}"/>
-                </div>
-                <field name="number_of_days"/>
-                <field name="is_deducted" attrs="{'readonly': [('state', 'in', ('Completed'))]}"/>
-                </group>
-                <group name="group_right">
-                <field name="create_uid"/>
-                <field name="create_date"/>
-                </group>
-            </group>
+                <sheet>
+                    <widget name="web_ribbon" title="Success" bg_color="bg-success" attrs="{'invisible': [('state', 'not in', ('Completed'))]}"/>
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Name" attrs="{'readonly':[('state', '!=', 'New')]}"/>
+                        </h1>
+                    </div>
 
 
-            <notebook name="main_notebook">
-                <page name="bulk_update_employees" string="Bulk Update Employees">
-                    <field name="hr_holiday_bulk_update_employee"/>
-                </page>
-            </notebook>
+                    <group name="main_group">
+                        <group name="group_left">
+                            <label string="From" for="start_date"/>
+                            <div class="o_row">
+                                <field name="start_date" widget="daterange" options="{&quot;related_end_date&quot;: &quot;end_date&quot;}" attrs="{'readonly':[('state', '!=', 'New')]}"/>
+                                <span>to</span>
+                                <field name="end_date" widget="daterange" options="{&quot;related_start_date&quot;: &quot;start_date&quot;}" attrs="{'readonly':[('state', '!=', 'New')]}"/>
+                            </div>
+                            <field name="number_of_days"/>
+                            <field name="is_deducted" attrs="{'readonly': [('state', 'in', ('Completed'))]}"/>
+                        </group>
+                        <group name="group_right">
+                            <field name="create_uid"/>
+                            <field name="create_date"/>
+                        </group>
+                    </group>
 
 
-            </sheet>
-            <!-- <div class="oe_chatter" name="mainchatterview">
+                    <notebook name="main_notebook">
+                        <page name="bulk_update_employees" string="Bulk Update Employees">
+                            <field name="hr_holiday_bulk_update_employee"/>
+                        </page>
+                    </notebook>
+
+
+                </sheet>
+                <!-- <div class="oe_chatter" name="mainchatterview">
             <field name="message_follower_ids"/>
             <field name="activity_ids"/>
             <field name="message_ids"/>
             </div> -->
-        </form>
+            </form>
         </field>
     </record>
 
@@ -2580,63 +2584,82 @@
         <field name="name">view_hr_holiday_bulk_update_employee_list</field>
         <field name="model">hr_holiday_bulk_update_employee</field>
         <field name="arch" type="xml">
-        <tree edit="false" create="false" delete="false">
-            <field name="hr_holiday_bulk_update_id"/>
-            <field name="employee_id"/>
-            <field name="desc"/>
-        </tree>
+            <tree edit="false" create="false" delete="false">
+                <field name="hr_holiday_bulk_update_id"/>
+                <field name="employee_id"/>
+                <field name="desc"/>
+            </tree>
         </field>
     </record>
-    
+
     <record id="view_hr_holiday_bulk_update_employee_form" model="ir.ui.view">
         <field name="name">view_hr_holiday_bulk_update_employee_form</field>
         <field name="model">hr_holiday_bulk_update_employee</field>
 
         <field name="arch" type="xml">
-        <form  >
-            <header>
-            <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+            <form  >
+                <header>
+                    <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
                 
     
                 <field name="state" widget="statusbar" />-->
-            </header>
+                </header>
 
-            <sheet>
+                <sheet>
 
-            <div name="button_box" class="oe_button_box">
-            </div>
-            <div class="oe_title">
-                <h1>
-                
-                </h1>
-            </div>
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
 
-
-            <group name="main_group">
-                <group name="group_left">
-
-                </group>
-                <group name="group_right">
-
-                </group>
-            </group>
+                        </h1>
+                    </div>
 
 
-            <!-- <notebook name="main_notebook">
+                    <group name="main_group">
+                        <group name="group_left">
+
+                        </group>
+                        <group name="group_right">
+
+                        </group>
+                    </group>
+
+
+                    <!-- <notebook name="main_notebook">
                 <page name="page1" string="page name">
                     
                 </page>
                 </notebook> -->
 
 
-            </sheet>
-            <!-- <div class="oe_chatter" name="mainchatterview">
+                </sheet>
+                <!-- <div class="oe_chatter" name="mainchatterview">
             <field name="message_follower_ids"/>
             <field name="activity_ids"/>
             <field name="message_ids"/>
             </div> -->
-        </form>
+            </form>
         </field>
+    </record>
+
+
+    <record id="employee_training_pivot_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="x_employee_id" type="measure"/>
+            </pivot>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">employee.training</field>
+        <field name="name">Default pivot view for employee_training_pivot_1</field>
+        <field name="priority">16</field>
+        <field name="type">pivot</field>
     </record>
 
 </odoo>

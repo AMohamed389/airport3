@@ -25,6 +25,17 @@ class trainer (models.Model):
     trainer_code = fields.Char(string='Trainer Code', copy=False)
     active = fields.Boolean(string='Active',index=True,default=True)
     
+    @api.constrains('mobile_phone')
+    def _check_mobile_11(self):
+        for rec in self:
+            if len(str(rec.mobile_phone)) != 11:
+                raise ValidationError("Mobile number should be 11 digits !.")
+
+    @api.constrains('identification_id')
+    def _check_id_number_14(self):
+        for rec in self:
+            if len(str(rec.identification_id)) != 14:
+                raise ValidationError("National Id number should be 14 digits !.")
 
     @api.onchange('employee_id')
     def _onchange_employee_id(self):

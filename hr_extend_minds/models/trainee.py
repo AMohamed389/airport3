@@ -29,6 +29,20 @@ class trainee (models.Model):
     active = fields.Boolean(string='Active', index=True, default=True)
     employee_training_id = fields.One2many('employee.training', 'trainee_id', string='Trainings')
 
+
+    @api.constrains('mobile_phone')
+    def _check_mobile_11(self):
+        for rec in self:
+            if len(str(rec.mobile_phone)) != 11:
+                raise ValidationError("Mobile number should be 11 digits !.")
+
+
+    @api.constrains('identification_id')
+    def _check_id_number_14(self):
+        for rec in self:
+            if len(str(rec.identification_id)) != 14:
+                raise ValidationError("National Id number should be 14 digits !.")
+
     @api.model
     def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
         args = args or []

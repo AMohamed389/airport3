@@ -27,6 +27,7 @@ class mission (models.Model):
     attachment = fields.Binary(string='Attachment')
     state = fields.Selection([ ('New', 'New'),('Submit','Submit') ], string='Status',default="New",index=True)
     desc = fields.Text(string='Description')
+    destination_country = fields.Many2one('res.country', string='Destination Country')
     
     def submit(self):
         self.state="Submit"
