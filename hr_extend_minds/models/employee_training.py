@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields, api
+from odoo import models, fields, api,_
 from odoo import exceptions
 from odoo.exceptions import ValidationError
 import json
@@ -176,14 +176,16 @@ class employeetraining(models.Model):
             self.x_training_actual_cost=self.x_training.x_training_cost
     
     def submit_training(self):
-
         domain=[('id', 'in', self.env.context.get('active_ids', [])),('state','=','New')]
+        if not self.env.context.get('active_ids', []):
+            domain=[('id', '=', self.id),('state','=','New')]
+            
         trainings=self.env['employee.training'].search(domain)
         for r in trainings:
 
             recs = self.env['training_budget'].search([('start_date','<=',r.x_start_date),('end_date','>=',r.x_start_date)],limit=1)
             if not recs:
-                    raise ValidationError("No Budget Assigned ")
+                    raise ValidationError(_("No Budget Assigned"))
             
             r.training_budget_id=recs.id
             r.state="Scheduled"
@@ -194,9 +196,9 @@ class employeetraining(models.Model):
 
     def final_training(self):
         if not self.x_training_grade:
-            raise ValidationError("Grade is mandatory")
+            raise ValidationError(_("Grade is mandatory"))
         if not self.certificate:
-            raise ValidationError("Attach Certificate")
+            raise ValidationError(_("Attach Certificate"))
         self.state="Completed"
 
     def cancel_training(self):
