@@ -22,10 +22,12 @@ class sync_folder (models.Model):
     
     def sync_employees_folder(self):
 
-        _doc_folder_rec = self.env['documents.folder'].search([('name','=','الموارد البشرية')], limit=1)
+        # _doc_folder_rec = self.env['documents.folder'].search([('name','=','الموارد البشرية')], limit=1)
 
-        if not _doc_folder_rec:
-            _doc_folder_rec = self.env['documents.folder'].search([('name','=','HR')], limit=1)
+        # if not _doc_folder_rec:
+        #     _doc_folder_rec = self.env['documents.folder'].search([('name','=','HR')], limit=1)
+
+        _doc_folder_rec = self.env.ref('documents_hr.documents_hr_folder')
 
         if not _doc_folder_rec:
             return False

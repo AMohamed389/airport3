@@ -218,13 +218,18 @@
   <menuitem id="parent_menu_mission"  name="Missions"  action="action_mission"  parent="hr_extend_minds.training_app_1" sequence="2900" />
 
   <record id="parent_menu_hr_position" model="ir.ui.menu">
-    <field name="action" ref="hr.action_hr_job"/>
+    <field name="action" eval="False"/>
+    <!-- <field name="action" ref="hr.action_hr_job"/> -->
     <field name="active" eval="True" />
     <field name="groups_id" eval="[(6, 0, [])]" />
-    <field name="name">Job Position</field>
+    <field name="name">Job Structure</field>
     <field name="parent_id" eval="False" />
     <field name="sequence">103</field>
     <field name="web_icon">fa fa-suitcase,#FFFFFF,#123661</field>
   </record>
+
+  <menuitem id="parent_menu_job_position"  name="Job Position"  action="hr.action_hr_job"  parent="parent_menu_hr_position" sequence="3000" />
+  <menuitem id="parent_menu_job_hierarchy"  name="Job Hierarchy"  action="action_job_hierarchy"  parent="parent_menu_hr_position" sequence="3001" />
+  <menuitem id="parent_menu_job_hierarchy_decisions"  name="Job Hierarchy Decisions"  action="action_job_hierarchy_decisions"  parent="parent_menu_hr_position" sequence="3002" />
 
 </odoo>

@@ -137,7 +137,7 @@ class hrextend(models.Model):
                                           index=True)
 
 
-    x_document_folder_id = fields.Many2one('documents.folder', string="Document Folder", readonly=True, index=True, tracking=True, ondelete="cascade")
+    x_document_folder_id = fields.Many2one('documents.folder', string="Document Folder", index=True, tracking=True, ondelete="cascade")
 
     #x_attachments = fields.One2many('documents.document', 'attachment_id', string="Attachments", compute="_get_attachments", ondelete="cascade")
     x_attachments = fields.One2many('documents.document', string="Attachments", compute="_get_attachments")
@@ -319,20 +319,17 @@ class hrextend(models.Model):
     @api.model   
     def create(self, vals):
 
-        result = super(hrextend, self).create(vals)
-
-        _logger.info(str("hr_employee create result : ") + str(result))
-
-        _logger.info(str("hr_employee create vals : ") + str(vals))
-
-
+    
+        #_logger.info(str("hr_employee create vals : ") + str(vals))
         
-        _doc_folder_rec = self.env['documents.folder'].search([('name','=','الموارد البشرية')], limit=1)
-        _logger.info(str("hr_employee create _doc_folder_rec : ") + str(_doc_folder_rec))
+        # _doc_folder_rec = self.env['documents.folder'].search([('name','=','الموارد البشرية')], limit=1)
+        # _logger.info(str("hr_employee create _doc_folder_rec : ") + str(_doc_folder_rec))
 
-        if not _doc_folder_rec:
-            _doc_folder_rec = self.env['documents.folder'].search([('name','=','HR')], limit=1)
-            _logger.info(str("hr_employee create _doc_folder_rec : ") + str(_doc_folder_rec))
+        # if not _doc_folder_rec:
+        #     _doc_folder_rec = self.env['documents.folder'].search([('name','=','HR')], limit=1)
+        #     _logger.info(str("hr_employee create _doc_folder_rec : ") + str(_doc_folder_rec))
+
+        _doc_folder_rec = self.env.ref('documents_hr.documents_hr_folder')
 
         if _doc_folder_rec:
             
@@ -345,10 +342,11 @@ class hrextend(models.Model):
 
             _doc_folder_parent_create_rec = self.env['documents.folder'].create({
                 'name': _folder_name,
-                'parent_folder_id': _doc_folder_rec[0].id
+                'parent_folder_id': _doc_folder_rec.id,
+                # 'parent_folder_id': _doc_folder_rec[0].id
             })
 
-            vals['x_document_folder_id'] = int(_doc_folder_parent_create_rec)
+            vals['x_document_folder_id'] = _doc_folder_parent_create_rec.id
 
             _logger.info(str("hr_employee create _doc_folder_create_rec : ") + str(_doc_folder_parent_create_rec))
             
@@ -372,6 +370,8 @@ class hrextend(models.Model):
                 'parent_folder_id': int(_doc_folder_parent_create_rec)
             })
 
+        result = super(hrextend, self).create(vals)
+        #_logger.info(str("hr_employee create result : ") + str(result))
         return result
 
    
