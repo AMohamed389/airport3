@@ -81,7 +81,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="row" t-if="o.is_education_certificate_level and o.x_employee_id.certificate">
+                                    <div class="row" t-if="o.is_education_certificate_level and o.x_employee_id.x_education_certificate_level">
                                         <div class="col">
                                             <br />
                                             <span>تاريخ المؤهل : </span>
@@ -90,14 +90,14 @@
                                         </div>
                                     </div>
 
-                                    <div class="row" t-if="o.is_education_certificate_level and o.x_employee_id.certificate">
+                                    <div class="row" t-if="o.is_education_certificate_level and o.x_employee_id.study_field">
                                         <div class="col">
                                             <br />
                                             <span>مجال الدراسة : </span><span  t-field="o.x_employee_id.study_field" />
                                         </div>
                                     </div>
 
-                                    <div class="row" t-if="o.is_education_certificate_level and o.x_employee_id.certificate">
+                                    <div class="row" t-if="o.is_education_certificate_level and o.x_employee_id.study_school">
                                         <div class="col">
                                             <br />
                                             <span>جهة صدور المؤهل : </span><span  t-field="o.x_employee_id.study_school" />
@@ -431,11 +431,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <br/>
-                            <br/>
-                            <br/>
                         </div>
-                        
                     </div>
 
                     <div class="footer">
