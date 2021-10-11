@@ -228,8 +228,16 @@
     <field name="web_icon">fa fa-suitcase,#FFFFFF,#123661</field>
   </record>
 
-  <menuitem id="parent_menu_job_position"  name="Job Position"  action="hr.action_hr_job"  parent="parent_menu_hr_position" sequence="3000" />
+  <menuitem id="parent_menu_job_position"  name="Job Position"  action="action_job_structure"  parent="parent_menu_hr_position" sequence="3000" />
+  <!-- <menuitem id="parent_menu_job_position"  name="Job Position"  action="hr.action_hr_job"  parent="parent_menu_hr_position" sequence="3000" /> -->
   <menuitem id="parent_menu_job_hierarchy"  name="Job Hierarchy"  action="action_job_hierarchy"  parent="parent_menu_hr_position" sequence="3001" />
   <menuitem id="parent_menu_job_hierarchy_decisions"  name="Job Hierarchy Decisions"  action="action_job_hierarchy_decisions"  parent="parent_menu_hr_position" sequence="3002" />
+
+  <menuitem
+            id="menu_hr_employee_user"
+            name="Employees Pivot Table"
+            action="hr_extend_minds.open_view_employee_list_my"
+            parent="hr.hr_menu_hr_reports"
+            sequence="1"/>
 
 </odoo>

@@ -2084,8 +2084,6 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">training_location</field>
         <field name="view_mode">tree,form</field>
-
-
     </record>
 
     <record id="view_training_location_list" model="ir.ui.view">
@@ -2829,5 +2827,66 @@
         </form>
       </field>
     </record>
+
+    <record id="employee_pivot_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="name" type="measure"/>
+            </pivot>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">hr.employee</field>
+        <field name="name">Default pivot view for hr_employee_pivot_1</field>
+        <field name="priority">16</field>
+        <field name="type">pivot</field>
+    </record>
+
+    <record id="action_job_structure" model="ir.actions.act_window">
+        <field name="name">Job Position</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.job</field>
+        <field name="view_mode">tree,form,pivot</field>
+    </record>
+
+    <record id="open_view_employee_list_my" model="ir.actions.act_window">
+        <field name="name">Employees</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">pivot</field>
+        <field name="domain">[]</field>
+        <field name="context">{'chat_icon': True}</field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="hr.view_employee_filter"/>
+        <field name="help" type="html">
+         <p class="o_view_nocontent_smiling_face">
+           Add a new employee
+         </p><p>
+           With just a quick glance on the Odoo employee screen, you
+           can easily find all the information you need for each person;
+           contact data, job position, availability, etc.
+         </p>
+        </field>
+    </record>
+
+    <!-- <record id="open_view_employee_tree" model="ir.actions.act_window">
+        <field name="name">Employees Structure</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">tree,form,pivot</field>
+        <field name="view_id" ref="hr.view_employee_tree"/>
+        <field name="domain">[('parent_id','=',False)]</field>
+        <field name="search_view_id" ref="hr.view_employee_filter"/>
+    </record>
+
+    <record id="open_view_employee_list" model="ir.actions.act_window">
+        <field name="name">Employees</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">form,tree,pivot</field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="hr.view_employee_filter"/>
+    </record> -->
 
 </odoo>

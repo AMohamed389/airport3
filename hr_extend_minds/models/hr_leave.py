@@ -202,8 +202,11 @@ class hrleaveextend(models.Model):
 
             #_logger.info("hr_leave validate_cl _days_diff : " + str(_days_diff))
 
-            if _days_diff > 3:
-                raise ValidationError("Consumed > 3 consecutive days for leave {0} !.".format(_leave_type_rec.name))
+            # if _days_diff > 3:
+            #     raise ValidationError("Consumed > 3 consecutive days for leave {0} !.".format(_leave_type_rec.name))
+            
+            if _days_diff > 15:
+                raise ValidationError("Consumed > 15 consecutive days for leave {0} !.".format(_leave_type_rec.name))
             
 
             _day_before_dmssl = _request_date_from - timedelta(days=1)
@@ -214,23 +217,23 @@ class hrleaveextend(models.Model):
                 raise ValidationError(_("Year {0} cannot take DMS sick leave after DMS sick leave {1} !.".format(str(date.today().year), _leave_type_rec.name)))
 
 
-            _request_date_from_year = _request_date_from.year
-            _request_date_to_year = _request_date_to.year
+            # _request_date_from_year = _request_date_from.year
+            # _request_date_to_year = _request_date_to.year
 
-            _request_date_from_month = _request_date_from.month
-            _request_date_to_month = _request_date_to.month
+            # _request_date_from_month = _request_date_from.month
+            # _request_date_to_month = _request_date_to.month
 
-            _number_of_days_to_month = monthrange(_request_date_to_year, _request_date_to_month)[1]
+            # _number_of_days_to_month = monthrange(_request_date_to_year, _request_date_to_month)[1]
 
-            _check_from_dt = str(_request_date_from_year) + "-" + str(_request_date_from_month) + "-01"
-            _check_to_dt = str(_request_date_to_year) + "-" + str(_request_date_to_month) + "-" + str(_number_of_days_to_month)
+            # _check_from_dt = str(_request_date_from_year) + "-" + str(_request_date_from_month) + "-01"
+            # _check_to_dt = str(_request_date_to_year) + "-" + str(_request_date_to_month) + "-" + str(_number_of_days_to_month)
 
-            if _request_date_from_month == _request_date_to_month and _request_date_from_year == _request_date_to_year:
-                _employee_leaves = self.get_total_leaves_days(_request_date_from = _check_from_dt ,_request_date_to = _check_to_dt, _leave_code=_sick_dms_leave_code)
-                _total_number_of_days = _employee_leaves['total_number_of_days']
+            # if _request_date_from_month == _request_date_to_month and _request_date_from_year == _request_date_to_year:
+            #     _employee_leaves = self.get_total_leaves_days(_request_date_from = _check_from_dt ,_request_date_to = _check_to_dt, _leave_code=_sick_dms_leave_code)
+            #     _total_number_of_days = _employee_leaves['total_number_of_days']
 
-                if _total_number_of_days > 15:
-                    raise ValidationError("Consumed > 15 DMS leaves for leave {0} !.".format(_leave_type_rec.name))
+            #     if _total_number_of_days > 15:
+            #         raise ValidationError("Consumed > 15 DMS leaves for leave {0} !.".format(_leave_type_rec.name))
         
     def validate_rrl(self, vals):
         _leave_type_rec = self.env['hr.leave.type'].browse(self.holiday_status_id.id)

@@ -4,8 +4,8 @@
     <template id="report_job_structure_document">
         <t t-call="web.html_container" >
             <t t-foreach="docs" t-as="o">
-                <!-- <t t-call="web.external_layout"> -->
-                <t t-call="hr_extend_minds.custom_internal_layout">
+                <t t-call="web.external_layout">
+                <!-- <t t-call="hr_extend_minds.custom_internal_layout"> -->
                     <div class="page" >
                         <h4 t-field="o.x_sector_id"/>
                         <div>
