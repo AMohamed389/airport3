@@ -20,7 +20,7 @@ class trainee (models.Model):
 
     trainee_type = fields.Selection(
         [('Undergraduate', 'Undergraduate'), ('External Company', 'External Company')], string='Trainee Type', required=True,)
-    name = fields.Char(string='Trainee', index=True, required=True, copy=False)
+    name = fields.Char(string='Trainee Name', index=True, required=True, copy=False)
 
     mobile_phone = fields.Char(string='Mobile Number', copy=False)
     identification_id = fields.Char(string='Identification No', copy=False ,required=True)
