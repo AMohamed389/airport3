@@ -20,11 +20,11 @@ class trainee (models.Model):
 
     trainee_type = fields.Selection(
         [('Undergraduate', 'Undergraduate'), ('External Company', 'External Company')], string='Trainee Type', required=True,)
-    name = fields.Char(string='Trainer', index=True, required=True, copy=False)
+    name = fields.Char(string='Trainee', index=True, required=True, copy=False)
 
     mobile_phone = fields.Char(string='Mobile Number', copy=False)
     identification_id = fields.Char(string='Identification No', copy=False ,required=True)
-    trainer_code = fields.Char(string='Trainer Code', copy=False)
+    trainer_code = fields.Char(string='Trainee Code', copy=False)
     university = fields.Char(string='University', index=True)
     active = fields.Boolean(string='Active', index=True, default=True)
     employee_training_id = fields.One2many('employee.training', 'trainee_id', string='Trainings')
