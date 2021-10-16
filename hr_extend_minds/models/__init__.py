@@ -1,3 +1,4 @@
+from . import hr_leave
 from . import hr
 from . import employee_penalty
 from . import employee_training
@@ -20,7 +21,7 @@ from . import myfn
 
 from . import hr_report
 #from . import ir_actions_report
-from . import hr_leave
+
 from . import hr_employee_public
 
 from . import sync_folder
