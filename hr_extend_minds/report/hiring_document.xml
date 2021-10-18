@@ -1,0 +1,87 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <template id="report_hiring_document">
+        <t t-call="web.html_container" >
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                <!-- <t t-call="hr_extend_minds.custom_internal_layout"> -->
+                    <div class="page" >
+                        <h2 class="text-center">عقد عمل</h2><h4 t-field="o.employee_id.x_staff_id" class="text-right"></h4>
+                        <h6 t-field="o.equal_degree" class="text-right"></h6>
+                        <h4 t-esc="'انه في يوم {0} الموافق {1}'.format(o.create_date.strftime('%A'), o.create_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"></h4>
+                        <div class="row">
+                            <div class="col">
+                                <span>تم الأتفاق بين كلا من :-</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span t-esc="'1-شركة ميناء القاهرة الجوي و يمثلها السيد / رئيس مجلس الادارة'.replace('1','١')"/><h6 t-esc="'(طرف أول)'" class="text-right"></h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span t-esc="'2-السيد / {}'.format(o.employee_id.name).replace('2','٢')"/><h6 t-esc="'(طرف ثان)'" class="text-right"></h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span t-esc="'المقيم / {}'.format(o.employee_id.address_home_id.name).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span t-esc="'بطاقة رقم / {}'.format(o.employee_id.identification_id).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span t-esc="'و تاريخ ميلاده / {}'.format(o.employee_id.birthday.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span t-esc="'و مؤهله / {}'.format(o.employee_id.certificate)"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span>على الاّتي :-</span>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col">
+                                <span t-esc="'أولا :- أن يعمل الطرف الثاني لدى الطرف الأول بوظيفة {0}'.format(o.job_id.name)"/>
+                                <br/>
+                                <span t-esc="'  بقطاع / {0}'.format(o.sector)"/>
+                                <br/>
+                                <span t-esc="'      أعتبارا من {0} الى {1}'.format(o.date_start.strftime('%d-%m-%Y').replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '', o.date_end.strftime('%d-%m-%Y').replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '')"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span t-esc="'ثانيا :- يتقاضى الطرف الثاني من الطرف الأول مكأفة شاملة شهرية و قدرها ({0}) جنيها'.format(str(o.bonus).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '')"/>
+                                <br/>
+                                <span t-esc="'({0}) فقط لاغير بمرتب أساسي ({1}) جنيها'.format(o.bonus_text.replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '', str(wage).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '')"/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_hiring_document" model="ir.actions.report">
+        <field name="name">Hiring Document</field>
+        <field name="model">hr.contract</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_extend_minds.report_hiring_document</field>
+        <field name="report_file">hr_extend_minds.report_hiring_document</field>
+        <field name="print_report_name">'Hiring Document - %s - %s' % (object.employee_id.name, object.name)</field>
+        <field name="binding_model_id" ref="model_hr_contract"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

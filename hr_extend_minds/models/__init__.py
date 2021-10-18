@@ -42,6 +42,7 @@ from . import hr_holiday_bulk_update_employee
 from . import job_hierarchy
 from . import job_hierarchy_decisions
 
+from . import hr_contract
 
 
 

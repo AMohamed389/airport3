@@ -1279,8 +1279,6 @@
                             <field name="x_training_level"/>
                             <field name="x_training_cost"/>
                             <field name="training_budget_id" readonly="1" force_save="1" options='{"no_create": True}' />
-
-
                             <!--<field name="x_studio_tag_ids" widget="many2many_tags" options="{'color_field': 'x_color'}"/>-->
                         </group>
 
@@ -2888,5 +2886,75 @@
         <field name="view_id" eval="False"/>
         <field name="search_view_id" ref="hr.view_employee_filter"/>
     </record> -->
+
+    <record id="hr_contract_extend_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='date_end']" position="after">
+                    <field name="wage"/>
+                    <field name="bonus"/>
+                    <field name="equal_degree"/>
+                    <field name="structure_type_id" optional="hide"/>
+                    <field name="sector" optional="hide"/>
+                    <field name="public_administration" optional="hide"/>
+                    <field name="section" optional="hide"/>
+                    <field name="receiving_work_date" optional="hide"/>
+                    <field name="qualitative_group_id" optional="hide"/>
+                </xpath>
+            </data>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_tree"/>
+        <field name="key" eval="False"/>
+        <field name="mode">extension</field>
+        <field name="model">hr.contract</field>
+        <field name="name">hr.contract.tree customization</field>
+        <field name="priority">99</field>
+        <field name="type">tree</field>
+    </record>
+
+    <record id="hr_contract_extend_2" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='employee_id']" position="after">
+                    <field name="sector"/>
+                    <field name="public_administration"/>
+                    <field name="administration"/>
+                    <field name="section"/>
+                    <field name="qualitative_group_id"/>
+                </xpath>
+                <xpath expr="//field[@name='job_id']" position="after">
+                    <field name="receiving_work_date"/>
+                </xpath>
+                <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+                    <page name="hiring" string="Hiring">
+                        <group name="main_group">
+                            <group name="group_left">
+                                <field name="equal_degree"/>
+                                <field name="wage"/>
+                                <field name="basic_text"/>
+                            </group>
+                            <group name="group_right">
+                                <field name="bonus"/>
+                                <field name="bonus_text"/>
+                            </group>
+                          </group>
+                    </page>
+                </xpath>
+            </data>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="key" eval="False"/>
+        <field name="mode">extension</field>
+        <field name="model">hr.contract</field>
+        <field name="name">hr.contract.form customization</field>
+        <field name="priority">99</field>
+        <field name="type">form</field>
+    </record>
 
 </odoo>

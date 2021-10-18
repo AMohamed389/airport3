@@ -62,15 +62,39 @@
                                     <p t-field="o.x_job_qualifications"/>
                                 </div>
                             </div>
+
+                            <div class="row footer text-left">
+                                <div class="col-3">
+                                    <span>التوقيع / </span>
+                                </div>
+                                <div class="col-9">
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="row footer text-left">
+                                <div class="col-3">
+                                    <span>رئيس مجلس الادارة</span>
+                                </div>
+                                <div class="col-9">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row footer text-left">
+                    <!-- <div class="row footer text-left">
                         <div class="col-3">
                             <span>التوقيع / </span>
                         </div>
                         <div class="col-9">
                         </div>
                     </div>
+                    <div class="row footer text-left">
+                        <div class="col-3">
+                            <span>رئيس مجلس الادارة</span>
+                        </div>
+                        <div class="col-9">
+                        </div>
+                    </div> -->
                 </t>
             </t>
         </t>

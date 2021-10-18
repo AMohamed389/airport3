@@ -11,6 +11,7 @@
         'report/report_hr_statement_document.xml',
         'report/report_hr_letter_document.xml',
         'report/job_structure_document.xml',
+        'report/hiring_document.xml',
         'wizards/hr_statement_document_view.xml',
         'wizards/hr_letter_document_view.xml',
         'views/ir_ui_view.xml',
@@ -20,7 +21,6 @@
         'data/job_degree.xml',
         'data/document_folder.xml',
         'data/hr_leave_type.xml',
-
     ],
 
     # 'qweb': [

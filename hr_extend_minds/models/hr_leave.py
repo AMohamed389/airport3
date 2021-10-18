@@ -34,6 +34,7 @@ class hrleaveextend(models.Model):
     x_leave_type_name  = fields.Char(string="Leave Type Name", related="holiday_status_id.name", index=True)
     x_leave_type_code = fields.Char(string="Leave Type Code", related="holiday_status_id.code", index=True)
 
+
     def write(self, vals):
 
         result = super(hrleaveextend, self).write(vals)
@@ -104,6 +105,9 @@ class hrleaveextend(models.Model):
 
         if not _employee or not _leave_type_rec:
             return False
+
+        if not _receiving_work_date:
+            raise ValidationError(_("Receive Work Date field is empty for employee name : {0}, code : {1} !.".format(_employee.name,_employee.x_staff_id)))
 
         _months_diff = self.diff_month(_todays_date, _receiving_work_date)
 
@@ -181,9 +185,7 @@ class hrleaveextend(models.Model):
         _leave_type_rec = self.env['hr.leave.type'].browse(self.holiday_status_id.id)
         _leave_code = _leave_type_rec.code
         _employee = self.employee_id
-        _number_of_days = self.number_of_days
-        _receiving_work_date = _employee.x_receiving_work_date
-        _receiving_work_date_year = _receiving_work_date.year
+        _number_of_days = self.number_of_days        
         _todays_date = date.today()
         _current_year = _todays_date.year
         _sick_dms_leave_code = "SDMSL01"
@@ -192,6 +194,13 @@ class hrleaveextend(models.Model):
 
         if not _employee or not _leave_type_rec:
             return False
+        
+
+        _receiving_work_date = _employee.x_receiving_work_date
+        if not _receiving_work_date:
+            raise ValidationError(_("Receive Work Date field is empty for employee name : {0}, code : {1} !.".format(_employee.name,_employee.x_staff_id)))
+
+        _receiving_work_date_year = _receiving_work_date.year
 
         if _leave_code == _sick_dms_leave_code:
             
@@ -676,7 +685,10 @@ class hrleaveextend(models.Model):
             return False
 
         _receiving_work_date = _employee.x_receiving_work_date
+        if not _receiving_work_date:
+            raise ValidationError(_("Receive Work Date field is empty for employee name : {0}, code : {1} !.".format(_employee.name,_employee.x_staff_id)))
         _receiving_work_date_year = _receiving_work_date.year
+        
         _todays_date = date.today()
         # _current_year = _todays_date.year
         # _current_month = _todays_date.month
@@ -702,8 +714,6 @@ class hrleaveextend(models.Model):
         _leave_code = _leave_type_rec.code
         _employee = self.employee_id
         _number_of_days = self.number_of_days
-        _receiving_work_date = _employee.x_receiving_work_date
-        _receiving_work_date_year = _receiving_work_date.year
         _todays_date = date.today()
         _current_year = _todays_date.year
         _sick_dms_leave_code = "SDMSL01"
@@ -717,6 +727,12 @@ class hrleaveextend(models.Model):
         _sick_snfpl18004_leave_code = "SNFPL18004"
         _request_date_from = self.request_date_from
         _request_date_to = self.request_date_to
+
+        _receiving_work_date = _employee.x_receiving_work_date
+        if not _receiving_work_date:
+            raise ValidationError(_("Receive Work Date field is empty for employee name : {0}, code : {1} !.".format(_employee.name,_employee.x_staff_id)))
+
+        _receiving_work_date_year = _receiving_work_date.year
 
         if not _employee or not _leave_type_rec:
             return False

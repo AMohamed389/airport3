@@ -54,7 +54,6 @@ class job_hierarchy_decisions(models.Model):
                     })
 
 
-
     def unlink(self):
         for _rec in self:
             if _rec.attachment_id:

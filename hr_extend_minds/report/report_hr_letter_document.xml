@@ -165,7 +165,7 @@
                             <div class="row">
                                 <div class="col">
                                     <!-- <span>و قد أعطيت لسيادته هذه الشهادة بناء على طلبه من واقع سجلات الشركة وذلك لتقديمها الى : </span><span t-field="o.x_destination" /> -->
-                                    <span t-esc="'و قد أعطيت لسيادته هذه الشهادة بناء على طلبه من واقع سجلات الشركة وذلك لتقديمها الى : '.replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠')" />
+                                    <span t-esc="'و قد أعطيت لسيادته هذه الشهادة بناء على طلبه من واقع سجلات الشركة وذلك لتقديمها الى : {}'.format(o.x_destination).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠')" />
                                 </div>
                             </div>
 

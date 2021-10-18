@@ -388,6 +388,7 @@
                                     </tbody>
                                 </table>
                             </div>
+
                             <div t-if="o.is_education_certificates_history and o.x_employee_id.x_hr_education_certificate">
                                 <br/>
                                 <h5 class="">المؤهلات الدراسية</h5>
@@ -425,6 +426,124 @@
                                                 <td class="">
                                                     <!-- <span t-field="education_certificate.x_decision_date"/> -->
                                                     <span t-if="education_certificate.x_decision_date" t-esc="'{0}'.format(education_certificate.x_decision_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''" />
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div t-if="o.is_training and o.x_employee_id.x_employee_training">
+                                <br/>
+                                <h5 class="">التدريبات</h5>
+                                <table class="table table-striped">
+                                    <thead style="display: table-row-group">
+                                        <tr>
+                                            <th class="text-nowrap">قطاع</th>
+                                            <th class="text-nowrap">ادارة عامة</th>
+                                            <th class="text-nowrap">ادارة</th>
+                                            <th class="text-nowrap">قسم</th>
+                                            <th class="text-nowrap">تدريبات</th>
+                                            <th class="text-nowrap">نوع الدورة</th>
+                                            <th class="text-nowrap">كود برنامج التدريب</th>
+                                            <th class="text-nowrap">مستوى التدريب</th>
+                                            <th class="text-nowrap">تاريخ البداية</th>
+                                            <th class="text-nowrap">تاريخ الانتهاء</th>
+                                            <th class="text-nowrap">حالة</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                
+                                
+                                        <t t-foreach="o.x_employee_id.x_employee_training" t-as="employee_training">
+                                            <tr>
+                                                <td class="">
+                                                    <span t-field="employee_training.x_sector_name"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_training.x_public_administration_name"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_training.x_administration_name"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_training.x_section_name"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_training.x_training"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_training.x_training_type"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_training.x_training_code"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_training.x_training_level"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-if="employee_training.x_start_date" t-esc="'{0}'.format(employee_training.x_start_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-if="employee_training.x_end_date" t-esc="'{0}'.format(employee_training.x_end_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_training.state"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div t-if="o.is_penalties and o.x_employee_id.x_employee_penalty">
+                                <br/>
+                                <h5 class="">الجزاءات</h5>
+                                <table class="table table-striped">
+                                    <thead style="display: table-row-group">
+                                        <tr>
+                                            <th class="text-nowrap">الجزاء</th>
+                                            <th class="text-nowrap">تاريخ الجزاء</th>
+                                            <th class="text-nowrap">تاريخ تفعيل الجزاء</th>
+                                            <th class="text-nowrap">رقم القرار</th>
+                                            <th class="text-nowrap">تاريخ القرار</th>
+                                            <th class="text-nowrap">رقم التحقيق</th>
+                                            <th class="text-nowrap">تاريخ التحقيق</th>
+                                            <th class="text-nowrap">السبب</th>
+                                            <th class="text-nowrap">حالة</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                
+                                
+                                        <t t-foreach="o.x_employee_id.x_employee_penalty" t-as="employee_penalty">
+                                            <tr>
+                                                <td class="">
+                                                    <span t-field="employee_penalty.x_penalty_id.name"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-if="employee_penalty.x_penalty_date" t-esc="'{0}'.format(employee_penalty.x_penalty_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-if="employee_penalty.x_penalty_effective_date" t-esc="'{0}'.format(employee_penalty.x_penalty_effective_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_penalty.x_decision_number"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-if="employee_penalty.x_penalty_decision_date" t-esc="'{0}'.format(employee_penalty.x_penalty_decision_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_penalty.x_investigation_number"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-if="employee_penalty.x_investigation_date" t-esc="'{0}'.format(employee_penalty.x_investigation_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_penalty.x_penalty_reason"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_penalty.state"/>
                                                 </td>
                                             </tr>
                                         </t>
