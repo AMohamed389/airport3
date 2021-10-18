@@ -58,7 +58,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <span t-esc="'و تاريخ ميلاده / {}'.format(o.employee_id.birthday.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                                <span t-esc="o.employee_id.birthday and 'و تاريخ ميلاده / {}'.format(o.employee_id.birthday.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
                             </div>
                         </div>
                         <div class="row">
