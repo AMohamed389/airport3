@@ -2,7 +2,7 @@
     'name': 'HR_EXTEND_MINDS',
     'description': 'HR_EXTEND_MINDS',
     'author': 'Minds Solutions',
-    'depends': ['base','hr','documents','hr_holidays'],
+    'depends': ['base','hr','documents','hr_holidays','hr_contract'],
     'application': True,
 
     'data': [
