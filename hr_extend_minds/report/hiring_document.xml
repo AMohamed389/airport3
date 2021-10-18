@@ -7,9 +7,12 @@
                 <t t-call="web.external_layout">
                 <!-- <t t-call="hr_extend_minds.custom_internal_layout"> -->
                     <div class="page" >
-                        <h2 class="text-center">عقد عمل</h2><h4 t-field="o.employee_id.x_staff_id" class="text-right"></h4>
-                        <h6 t-field="o.equal_degree" class="text-right"></h6>
-                        <h4 t-esc="'انه في يوم {0} الموافق {1}'.format(o.create_date.strftime('%A'), o.create_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"></h4>
+                        <h2 class="text-center">عقد عمل</h2>
+                        <span clss="font-weight-bold text-left" t-esc="'انه في يوم {0} الموافق {1}'.format(o.create_date.strftime('%A').replace('Saturday','السبت').replace('Sunday','الأحد').replace('Monday','الاثنين').replace('Tuesday','الثلاثاء').replace('Wednesday','الأربعاء').replace('Thursday','الخميس').replace('Friday','الجمعة') or '', o.create_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"></span>
+                        <span t-field="o.employee_id.x_staff_id" class="text-right"></span>
+                        <br/>
+                        <span t-esc="'بما يعادل الدرجة {0}'.format(o.equal_degree)" class="text-right" />
+                        
                         <div class="row">
                             <div class="col">
                                 <span>تم الأتفاق بين كلا من :-</span>
@@ -17,12 +20,12 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <span t-esc="'1-شركة ميناء القاهرة الجوي و يمثلها السيد / رئيس مجلس الادارة'.replace('1','١')"/><h6 t-esc="'(طرف أول)'" class="text-right"></h6>
+                                <span t-esc="'1-شركة ميناء القاهرة الجوي و يمثلها السيد / رئيس مجلس الادارة'.replace('1','١')"/><span t-esc="'(طرف أول)'" class="text-right font-weight-bold"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <span t-esc="'2-السيد / {}'.format(o.employee_id.name).replace('2','٢')"/><h6 t-esc="'(طرف ثان)'" class="text-right"></h6>
+                                <span t-esc="'2-السيد / {}'.format(o.employee_id.name).replace('2','٢')"/><span t-esc="'(طرف ثان)'" class="text-right font-weight-bold"></span>
                             </div>
                         </div>
                         <div class="row">
@@ -64,7 +67,24 @@
                             <div class="col">
                                 <span t-esc="'ثانيا :- يتقاضى الطرف الثاني من الطرف الأول مكأفة شاملة شهرية و قدرها ({0}) جنيها'.format(str(o.bonus).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '')"/>
                                 <br/>
-                                <span t-esc="'({0}) فقط لاغير بمرتب أساسي ({1}) جنيها'.format(o.bonus_text.replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '', str(wage).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '')"/>
+                                <span t-esc="'({0}) فقط لاغير بمرتب أساسي ({1}) جنيها'.format(o.bonus_text.replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '', str(o.wage).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '')"/>
+                                <br/>
+                                <span>بالاضافة الى مايقرر من مزايا خلال فترة سريان العقد طبقا للوائح و التعليمات المقررة.</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span>ثالثا :- يلتزم الطرف الثاني في حالة تقاضيه أي معاش أن يبادر بأخطار الجهة المختصة بالتحاقه بالعمل لدى الشركة و المكافأة الشاملة التي يحصل عليها كم يلتزم أن يقدم للطرف الأول ما يثبت قيامه بتنفيذ هذا الأجراء خلال خمسة عشر يوما من تاريخ التحاقه بالعمل وفي حالة عدم تنفيذه يحق للطرف الأول الغاء العقد فضلا عن تحمله المسئولية الجنائيه وحده.</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span>رابعا :- يتعهد الطرف الثاني بتنفيذ كافة اللوائح و التعليمات الصادرة بالشركة.</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span>خامسا :- يلتزم الطرف الثاني بتقديم مسوغات التعيين قبل استلام العمل أو في المدة التي يحددها الطرف الأول و في حالة عدم التنفيذ يحق للطرف الأول انهاء هذا العقد دون حاجة الى تنبيه أو انذار.</span>
                             </div>
                         </div>
                     </div>
