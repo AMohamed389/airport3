@@ -15,7 +15,7 @@
                             </div>
                             
                             <div class="text-right col-4">
-                                <span t-field="o.employee_id.x_staff_id" class="text-right"></span>
+                                <span t-esc="'{0}'.format(o.employee_id.x_staff_id).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''" class="text-right" />
                                 <br/>
                                 <span t-esc="'بما يعادل الدرجة {0}'.format(o.equal_degree)" class="text-right" />
                             </div>
@@ -77,9 +77,10 @@
                             <div class="col">
                                 <span t-esc="'أولا :- أن يعمل الطرف الثاني لدى الطرف الأول بوظيفة {0}'.format(o.job_id.name)"/>
                                 <br/>
-                                <span t-esc="'  بقطاع / {0}'.format(o.sector.replace('قطاع ',''))"/>
+                                <span t-esc="o.sector and '  بقطاع / {0}'.format(o.sector.replace('القطاع ','').replace('قطاع ','')"/>
                                 <br/>
-                                <span t-esc="'      أعتبارا من {0} الى {1}'.format(o.date_start.strftime('%d-%m-%Y').replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '', o.date_end.strftime('%d-%m-%Y').replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '')"/>
+                                <span t-esc="o.date_start and o.date_end and '      أعتبارا من {0} الى {1}'.format(o.date_start.strftime('%d-%m-%Y').replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '', o.date_end.strftime('%d-%m-%Y').replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '')"/>
+                                <span t-esc="o.date_start and not o.date_end and '      أعتبارا من {0}'.format(o.date_start.strftime('%d-%m-%Y').replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '')"/>
                             </div>
                         </div>
                         <br/>
