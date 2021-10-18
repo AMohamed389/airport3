@@ -41,7 +41,7 @@
                             <div class="col-9">
                                 <span t-esc="'2-السيد / {}'.format(o.employee_id.name).replace('2','٢')"/>
                             </div>
-                            <div class="col-9">
+                            <div class="col-3">
                                 <span t-esc="'(طرف ثان)'" class="text-right font-weight-bold"></span>
                             </div>
                         </div>
