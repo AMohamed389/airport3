@@ -44,6 +44,8 @@ from . import job_hierarchy_decisions
 
 from . import hr_contract
 
-
+from . import salary_degree
+from . import salary_marital
+from . import salary_supervision_job
 
 

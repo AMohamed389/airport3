@@ -26,7 +26,7 @@ class hr_job(models.Model):
     x_sector_id = fields.Many2one('hr.department', domain=[['x_type','=','Sector']], string="Sector", index=True, tracking=True)
     x_sector_name = fields.Char(related='x_sector_id.name', string="Sector", store=True, index=True, tracking=True)
     x_qualitative_group_name = fields.Char(related='x_qualitative_group_id.name', string="Qualitative Group", store=True, index=True, tracking=True)
-
+    x_is_supervision_job = fields.Boolean(string="Is Supervision Job ?", index=True, tracking=True)
     
 
 

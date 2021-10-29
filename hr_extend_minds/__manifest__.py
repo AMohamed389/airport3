@@ -15,6 +15,7 @@
         'wizards/hr_statement_document_view.xml',
         'wizards/hr_letter_document_view.xml',
         'views/ir_ui_view.xml',
+        'views/ir_ui_view2.xml',
         'views/ir_ui_menu.xml',
         'security/hr_extend_access.xml',
         'security/ir.model.access.csv',

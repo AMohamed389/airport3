@@ -123,7 +123,7 @@ class hrextend(models.Model):
 
     x_disability = fields.Char(string="Disability Id Number", index=True, tracking=True)
 
-    x_supervision_job = fields.Many2one('hr.job',string="Supervision Job", index=True, tracking=True)
+    x_supervision_job = fields.Many2one('hr.job',string="Supervision Job", domain="[['x_is_supervision_job','=','True']]", index=True, tracking=True)
 
     x_hr_education_certificate = fields.One2many('hr_education_certificate', 'x_employee_id', string="Education Certificates", store=True,
                                           index=True)
