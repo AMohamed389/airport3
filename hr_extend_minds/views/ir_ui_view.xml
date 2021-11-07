@@ -949,6 +949,7 @@
                             <group name="insurance_page_group_parent_right"/>
                         </group>
                     </page>
+
                     <page string="Pension" name="pension_page">
                         <group name="pension_page_group_parent">
                             <group name="pension_page_group_parent_left">
@@ -957,9 +958,11 @@
                             <group name="pension_page_group_parent_right"/>
                         </group>
                     </page>
+
                     <page string="Penalties" name="penalty_page">
                         <field name="x_employee_penalty" context="{'default_x_employee_id': id}"/>
                     </page>
+
                     <page string="Training" name="training_page">
                         <field name="x_employee_training" context="{'default_x_employee_id': id}" />
                         <!--<tree editable="bottom">
@@ -974,6 +977,7 @@
                             </tree>
                         </field>-->
                     </page>
+
                     <page string="Military" name="military_page">
                         <group>
                             <group name="military_page_group_parent_left">
@@ -985,6 +989,7 @@
                             </group>
                         </group>
                     </page>
+
                     <page string="Delegation" name="delegation_page">
                         <group>
                             <group name="delegation_page_group_parent_left">
@@ -1027,6 +1032,14 @@
                         <field name="x_committee_employee" context="{'default_x_employee_id': id}"/>
                     </page>
 
+                    <page string="Card" name="employee_card_page">
+                        <field name="employee_card" context="{'default_employee_id': id}"/>
+                    </page>
+
+                    <page string="Bonus" name="employee_bonus_page">
+                        <field name="employee_bonus" context="{'default_employee_id': id}"/>
+                    </page>
+
                     <page string="Attachments" name="attachment_employee_page">
                         <field name="x_attachments" context="{'default_x_employee_id': id}"/>
                     </page>
@@ -1034,6 +1047,7 @@
                     <page string="Notes" name="notes_page">
                         <field name="x_notes" placeholder="Type down your notes here..." />
                     </page>
+
                 </xpath>
 
                 <!-- <xpath expr="//field[@name='x_job_degree']" position="before">

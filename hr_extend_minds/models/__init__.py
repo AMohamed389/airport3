@@ -48,4 +48,9 @@ from . import salary_degree
 from . import salary_marital
 from . import salary_supervision_job
 
+from . import bonus_batch
+from . import bonus_matrix
+from . import employee_bonus
+from . import employee_card
+
 

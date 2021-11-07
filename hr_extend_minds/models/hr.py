@@ -188,6 +188,9 @@ class hrextend(models.Model):
     ], string='Marital Status', groups="hr.group_hr_user", tracking=True, index=True)
     employee_training_ids = fields.One2many('employee.training', 'x_employee_id', string='Trainings')
     
+    employee_bonus = fields.One2many('employee_bonus', 'employee_id', string='Bonus')
+    employee_card = fields.One2many('employee_card', 'employee_id', string='Card')
+    
 
     @api.depends('department_id')
     def _get_section_name(self):
